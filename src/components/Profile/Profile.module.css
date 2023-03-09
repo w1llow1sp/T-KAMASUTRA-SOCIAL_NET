@@ -1,0 +1,11 @@
+.content {
+    grid-area: content;
+    background-color: var(--pearl);
+}
+
+.posts{
+    color: var(--dark-text-color);
+}
+.item{
+    color: var(--ligth-text-color);
+}

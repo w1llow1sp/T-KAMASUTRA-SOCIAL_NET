@@ -1,0 +1,29 @@
+:root {
+    --outer-space: #4C5760;
+    --cadet-gray: #93A8AC;
+    --pearl: #D7CEB2;
+    --dark-text-color:#2C3338;
+    /*gunmetal*/
+    --ligth-text-color:#F7F7F7;
+    /*seasalt*/
+    /*--khaki: #A59E8C;*/
+    /*--dim-grey: #66635B;*/
+}
+
+
+.app-wrapper {
+    display: grid;
+    width: 1200px;
+    margin: 0 auto;
+    grid-template-areas:
+          'h h'
+          'nav content';
+    grid-template-rows: 100px 1fr;
+    grid-template-columns: 2fr 10fr;
+    font-family: 'Nunito', sans-serif;
+
+}
+
+
+
+

@@ -1,0 +1,14 @@
+.nav {
+    grid-area: nav;
+    background-color: var(--cadet-gray);
+    padding: 3rem;
+}
+.item {
+    color:var(--ligth-text-color);
+    font-weight: 700;
+    font-size: 1.5rem;
+   line-height: 143%;
+}
+.item:not(:last-child){
+    padding-bottom: 1rem;
+}
