@@ -3,11 +3,16 @@
     background-color: var(--cadet-gray);
     padding: 3rem;
 }
-.item {
+.item a {
     color:var(--ligth-text-color);
     font-weight: 700;
     font-size: 1.5rem;
    line-height: 143%;
+    text-decoration: none;
+}
+.item a.activeLink {
+    transition: all ease-in-out 0.3s;
+    color:var(--dark-text-color)
 }
 .item:not(:last-child){
     padding-bottom: 1rem;
