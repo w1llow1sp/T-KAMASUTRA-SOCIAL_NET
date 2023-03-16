@@ -7,7 +7,7 @@ export type DialogItemPropsType = {
     name: string
 }
 
-export type MesagePropsType = {
+export type MessagePropsType = {
     message: string
 }
 
@@ -20,7 +20,7 @@ const DialogItem = (props: DialogItemPropsType) => {
     )
 }
 
-const Message = (props: MesagePropsType) => {
+const Message = (props: MessagePropsType) => {
     return (
         <div className={styles.message}>{props.message}</div>
     )
@@ -74,22 +74,21 @@ const Dialogs = (props: DialogItemPropsType) => {
             message: 'How about a call on Discord?'
         },
     ]
+
+    let DialogsElement = dialogsData.map(dialog=>
+        <DialogItem id={dialog.id} name={dialog.name}/>
+    )
+
+    let MessagesElement = messageData.map( message =>
+        <Message message={message.message}/>
+    )
     return (
         <div className={styles.dialogs}>
             <div className={styles.dialogsItem}>
-                <DialogItem name={dialogsData[0].name} id={dialogsData[0].id}/>
-                <DialogItem name={dialogsData[1].name} id={dialogsData[1].id}/>
-                <DialogItem name={dialogsData[2].name} id={dialogsData[2].id}/>
-                <DialogItem name={dialogsData[3].name} id={dialogsData[3].id}/>
-                <DialogItem name={dialogsData[4].name} id={dialogsData[4].id}/>
-                <DialogItem name={dialogsData[5].name} id={dialogsData[5].id}/>
+                {DialogsElement}
             </div>
             <div className={styles.messages}>
-                <Message message={messageData[0].message}/>
-                <Message message={messageData[1].message}/>
-                <Message message={messageData[2].message}/>
-                <Message message={messageData[3].message}/>
-                <Message message={messageData[4].message}/>
+                {MessagesElement}
             </div>
         </div>
     );

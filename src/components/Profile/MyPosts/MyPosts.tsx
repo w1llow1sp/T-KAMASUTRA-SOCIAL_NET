@@ -9,7 +9,7 @@ export type postDataPropsType ={
 }
 
 const MyPosts =()=> {
-    let postData = [
+    let postsData = [
         {
             id: 1,
             message: 'Its my first post!',
@@ -20,6 +20,9 @@ const MyPosts =()=> {
             likesCount:23
         },
     ]
+    let postsElement = postsData.map(el =>
+        <Post key={el.id} message={el.message} likesCount={el.likesCount}/>
+    )
     return (
             <div className={styles.postsBlock}>
                 <h3>My posts</h3>
@@ -30,8 +33,7 @@ const MyPosts =()=> {
 
                 </div>
                 <div className={styles.posts}>
-                    <Post message={postData[0].message} likesCount={postData[0].likesCount}/>
-                    <Post message={postData[1].message} likesCount={postData[1].likesCount}/>
+                    {postsElement}
                 </div>
             </div>
 
