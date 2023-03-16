@@ -2,33 +2,45 @@ import React from 'react';
 import styles from './Dialogs.module.css'
 import {NavLink} from "react-router-dom";
 
+export type DialogItemPropsType ={
+    id:number
+    name:string
+}
+
+export type MesagePropsType ={
+    message:string
+}
+
+const DialogItem =(props:DialogItemPropsType)=>{
+    let path = '/dialogs/'+props.id
+    return (
+        <div className={`${styles.dialog} + ${styles.active}`}>
+            <NavLink to={path}>{props.name}</NavLink>
+        </div>
+    )
+}
+
+const Message = (props:MesagePropsType) => {
+    return (
+        <div className={styles.message}>{props.message}</div>
+    )
+}
+
 const Dialogs = () => {
     return (
         <div className={styles.dialogs}>
             <div className={styles.dialogsItem}>
-                <div className={`${styles.dialog} + ${styles.active}`}>
-                    <NavLink to={'/dialogs/1'}>Dima</NavLink>
-                </div>
-                <div className={styles.dialog}>
-                    <NavLink to={'/dialogs/2'}>Valera</NavLink>
-                </div>
-                <div className={styles.dialog}>
-                    <NavLink to={'/dialogs/3'}>Valentyn</NavLink>
-                </div>
-                <div className={styles.dialog}>
-                    <NavLink to={'/dialogs/4'}>Sasha</NavLink>
-                </div>
-                <div className={styles.dialog}>
-                    <NavLink to={'/dialogs/5'}>Zhenya</NavLink>
-                </div>
-                <div className={styles.dialog}>
-                    <NavLink to={'/dialogs/6'}>Dasha</NavLink>
-                </div>
+                <DialogItem name={'Dima'} id={1}/>
+                <DialogItem name={'Valera'} id={2}/>
+                <DialogItem name={'Valentyn'} id={3}/>
+                <DialogItem name={'Sasha'} id={4}/>
+                <DialogItem name={'Zhenya'} id={5}/>
+                <DialogItem name={'Dasha'} id={6}/>
             </div>
             <div className={styles.messages}>
-                <div className={styles.message}>Hi</div>
-                <div className={styles.message}>How are you?</div>
-                <div className={styles.message}>Yo!</div>
+                <Message message={'Hi'}/>
+                <Message message={'How are you?'}/>
+                <Message message={'Yo!'}/>
             </div>
         </div>
     );

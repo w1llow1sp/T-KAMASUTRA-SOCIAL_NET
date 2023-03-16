@@ -2,3 +2,11 @@
 .item{
     color: var(--ligth-text-color);
 }
+
+.postsBlock {
+    padding: 0.7rem;
+}
+
+.posts {
+    margin-top: 0.5rem;
+}
