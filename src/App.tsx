@@ -8,12 +8,26 @@ import {BrowserRouter, Route} from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
+import {gigaChadPropsType} from "./types/types";
 
 
 
 
 
-const App = () => {
+
+const App = (props:gigaChadPropsType) => {
+    /*    let postsData = [
+        {
+            id: 1,
+            message: 'Its my first post!',
+            likesCount:12
+        }, {
+            id: 2,
+            message: 'I think to make some coffee..',
+            likesCount:23
+        },
+    ]*/
+
     return (
         <BrowserRouter>
         <div className='app-wrapper'>
@@ -22,8 +36,8 @@ const App = () => {
             <div className='app-wrapper-content'>
 {/*             <Route path='/dialogs' component={Dialogs}/>
                 <Route path='/profile' component={Profile}/>*/}
-                <Route path='/dialogs' render={()=><Dialogs/>}/>
-                <Route path='/profile' render={()=><Profile/>}/>
+                <Route path='/dialogs' render={()=><Dialogs dialogs={props.dialogs} messages={props.messages}/>}/>
+                <Route path='/profile' render={()=><Profile posts={props.posts}/>}/>
                 <Route path='/news' component={News}/>
                 <Route path='/music' component={Music}/>
                 <Route path='/settings' component={Settings}/>
