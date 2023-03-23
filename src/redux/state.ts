@@ -1,5 +1,14 @@
 import {postsDataPropsType} from "../types/types";
 import  {v1} from "uuid";
+import {renderTree} from "../render";
+
+
+const createRandomLikes = () => {
+    let min = Math.ceil(0)
+    let  max = Math.ceil(100)
+    return Math.floor(Math.random() * (max-min)) + min
+
+}
 
 let state ={
     profilePage: {
@@ -7,11 +16,11 @@ let state ={
             {
                 id: v1(),
                 message: 'Its my first post!',
-                likesCount:12
+                likesCount:createRandomLikes()
             }, {
                 id: v1(),
                 message: 'I think to make some coffee..',
-                likesCount:23
+                likesCount:createRandomLikes()
             },
         ],
         dialogs:[
@@ -68,13 +77,16 @@ let state ={
 }
 
 
+
+
 export const addPost = (postText: string) => {
     const newPost : postsDataPropsType = {
         id: v1(),
         message: postText,
-        likesCount:0
+        likesCount:createRandomLikes()
     }
-    state.profilePage.posts.push(newPost)
+    state.profilePage.posts.unshift(newPost)
+    renderTree(state)
 }
 
 export default state

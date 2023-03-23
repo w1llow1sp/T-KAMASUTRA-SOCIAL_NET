@@ -15,7 +15,7 @@ const MyPosts = (props:ProfileProps) => {
         }
     }
 
-    let postsElement = props.postsProps.map(post =>
+    let postsElement = props.posts.map(post =>
         <Post key={post.id} message={post.message} likesCount={post.likesCount}/>)
 
 

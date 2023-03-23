@@ -15,9 +15,9 @@ const Post = (props: MyPostPropsType) => {
                      src='https://icons-for-free.com/iconfiles/png/512/avatar+circle+male+profile+user+icon-1320196710301016992.png'/>
                 <span className={styles.item}>{props.message}</span>
             </div>
-            <span className={styles.likeBtn}>
-                {props.likesCount}
-            </span>
+            <div className={styles.likeBtn}>
+                ❤ {props.likesCount}
+            </div>
         </div>
 
     )

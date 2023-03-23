@@ -49,6 +49,7 @@ export type dialogsPropsType ={
 // Ложечка за типизацию  MyPosts
 export type ProfileProps ={
     postsProps:Array<postsDataPropsType>
+    posts:Array<postsDataPropsType>
     addPostCallback:(postText:string)=> void
 }
 //

@@ -25,7 +25,7 @@ const App = (props:appStatePropsType) => {
             <Navbar/>
             <div className='app-wrapper-content'>
                 <Route path='/dialogs' render={()=><Dialogs dialogsProps={props.state.profilePage.dialogs} messageProps={props.state.messagePage.messages} />}/>
-                <Route path='/profile' render={()=><Profile postsProps={props.state.profilePage.posts} addPostCallback={addPost}/>}/>
+                <Route path='/profile' render={()=><Profile postsProps={props.state.profilePage.posts} posts={props.state.profilePage.posts} addPostCallback={addPost}/>}/>
                 <Route path='/news' component={News}/>
                 <Route path='/music' component={Music}/>
                 <Route path='/settings' component={Settings}/>
