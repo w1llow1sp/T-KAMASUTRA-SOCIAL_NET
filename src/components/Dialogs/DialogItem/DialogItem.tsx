@@ -3,7 +3,7 @@ import styles from './../Dialogs.module.css'
 import {NavLink} from "react-router-dom";
 
 export type DialogItemPropsType = {
-    id: number
+    id: string
     name: string
 }
 export const DialogItem = (props: DialogItemPropsType) => {

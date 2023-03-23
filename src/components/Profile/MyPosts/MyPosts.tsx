@@ -6,16 +6,18 @@ import {ProfileProps} from "../../../types/types";
 
 
 const MyPosts = (props:ProfileProps) => {
-    let postsElement = props.postsProps.map(post =>
-        <Post key={post.id} message={post.message} likesCount={post.likesCount}/>)
 
     let newPostElement = React.createRef<HTMLTextAreaElement>()
 
     function addPost() {
-       let text = newPostElement.current?.value
-        alert(text)
-
+        if (newPostElement.current ) {
+            props.addPostCallback( newPostElement.current.value)
+        }
     }
+
+    let postsElement = props.postsProps.map(post =>
+        <Post key={post.id} message={post.message} likesCount={post.likesCount}/>)
+
 
     return (
         <div className={styles.postsBlock}>

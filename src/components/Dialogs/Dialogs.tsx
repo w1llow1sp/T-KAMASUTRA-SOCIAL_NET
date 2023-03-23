@@ -8,11 +8,11 @@ import {dialogsPropsType} from "../../types/types";
 
 const Dialogs = (props:dialogsPropsType) => {
     let DialogsElement = props.dialogsProps.map(dialog=>
-        <DialogItem id={dialog.id} name={dialog.name}/>
+        <DialogItem  key={dialog.id}id={dialog.id} name={dialog.name}/>
     )
 
     let MessagesElement = props.messageProps.map( msg =>
-        <Message message={msg.message}/>
+        <Message key={msg.id} message={msg.message}/>
     )
     return (
         <div className={styles.dialogs}>
