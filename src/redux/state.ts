@@ -12,6 +12,7 @@ const createRandomLikes = () => {
 
 let state ={
     profilePage: {
+        newPostText:'',
         posts:[
             {
                 id: v1(),
@@ -86,6 +87,11 @@ export const addPost = (postText: string) => {
         likesCount:createRandomLikes()
     }
     state.profilePage.posts.unshift(newPost)
+    renderTree(state)
+}
+
+export const updateNewPostText = (newText: string) => {
+    state.profilePage.newPostText =newText;
     renderTree(state)
 }
 

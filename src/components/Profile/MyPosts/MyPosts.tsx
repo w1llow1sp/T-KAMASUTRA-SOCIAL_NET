@@ -1,18 +1,18 @@
-import React from "react";
-import  styles from './MyPosts.module.css'
+import React, {ChangeEvent} from "react";
+import styles from './MyPosts.module.css'
 import Post from "./Post/Post";
 import {ProfileProps} from "../../../types/types";
 
 
-
-const MyPosts = (props:ProfileProps) => {
-
-    let newPostElement = React.createRef<HTMLTextAreaElement>()
+const MyPosts = (props: ProfileProps) => {
 
     function addPost() {
-        if (newPostElement.current ) {
-            props.addPostCallback( newPostElement.current.value)
-        }
+        props.addPostCallback(props.newPostText)
+        props.updateNewPostTextCallback('')
+    }
+
+    let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        props.updateNewPostTextCallback(e.currentTarget.value)
     }
 
     let postsElement = props.posts.map(post =>
@@ -23,7 +23,7 @@ const MyPosts = (props:ProfileProps) => {
         <div className={styles.postsBlock}>
             <h3>My posts</h3>
             <div>
-                <div><textarea ref={newPostElement}></textarea></div>
+                <div><textarea  onChange={onPostChange} value={props.newPostText}/></div>
 
                 <div>
                     <button onClick={addPost}>Add post</button>
