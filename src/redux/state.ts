@@ -1,6 +1,15 @@
 import {postsDataPropsType} from "../types/types";
 import  {v1} from "uuid";
-import {renderTree} from "../render";
+
+
+let onChange =() => {
+    console.log('State changed')
+}
+
+export const subscribe=(callback: () => void) => {
+    callback()
+    onChange = callback
+}
 
 
 const createRandomLikes = () => {
@@ -77,9 +86,6 @@ let state ={
     },
 }
 
-
-
-
 export const addPost = (postText: string) => {
     const newPost : postsDataPropsType = {
         id: v1(),
@@ -87,12 +93,15 @@ export const addPost = (postText: string) => {
         likesCount:createRandomLikes()
     }
     state.profilePage.posts.unshift(newPost)
-    renderTree(state)
+    onChange()
 }
 
 export const updateNewPostText = (newText: string) => {
     state.profilePage.newPostText =newText;
-    renderTree(state)
+    onChange()
 }
+
+
+
 
 export default state
