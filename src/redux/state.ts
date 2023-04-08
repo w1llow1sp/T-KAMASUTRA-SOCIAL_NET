@@ -1,8 +1,9 @@
-import { postsDataPropsType, storeType} from "../types/types";
+import {  storeType} from "../types/types";
 import  {v1} from "uuid";
-import {message} from "antd";
+import profileReducer from "./profile-reducer";
+import messageReducer from "./message-reducer";
 
-const createRandomLikes = () => {
+export const createRandomLikes = () => {
     let min = Math.ceil(0)
     let  max = Math.ceil(100)
     return Math.floor(Math.random() * (max-min)) + min
@@ -120,33 +121,11 @@ const store:storeType = {
 
 
     dispatch (action) {
-         if (action.type === 'ADD-POST') {
-             const newPost : postsDataPropsType = {
-                 id: v1(),
-                 message:action.postText,
-                 likesCount:createRandomLikes()
-             }
-             this._state.profilePage.posts.unshift(newPost)
-             this._onChange()
-         } else if (action.type === 'CHANGE-NEW-TEXT') {
-             this._state.profilePage.newPostText =action.newText;
-             this._onChange()
-         } else if (action.type === 'UPDATE-NEW-MESSAGE-BODY') {
-             this._state.messagePage.newMessageBody =action.body;
-             this._onChange()
-         }else if (action.type === 'SEND-MESSAGE') {
-             let body =this._state.messagePage.newMessageBody;
-             this._state.messagePage.newMessageBody = '';
-             this._state.messagePage.messages.push(
-                 {
-                     id: v1(),
-                     message: body})
-             this._onChange()
+        this._state.profilePage = profileReducer(this._state.profilePage,action);
+        this._state.messagePage = messageReducer(this._state.messagePage,action);
 
-         }
-    }
-
-}
+        this._onChange()
+}}
 
 
 export default store

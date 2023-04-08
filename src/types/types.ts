@@ -40,6 +40,7 @@ export type storeType= {
 export type ProfilePageTypes = {
     newPostText:string
     posts: Array<postsDataPropsType>
+
 }
 export type messagePageType = {
     messages:Array<messagesDataPropsType>

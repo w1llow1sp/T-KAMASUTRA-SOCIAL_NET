@@ -14,7 +14,6 @@ const MyPosts = (props: ProfileProps) => {
     }
 
     let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-
         props.dispatch(changePostAC(e.currentTarget.value))
     }
 
