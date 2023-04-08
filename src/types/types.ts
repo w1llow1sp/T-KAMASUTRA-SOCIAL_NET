@@ -36,9 +36,6 @@ export type storeType= {
     subscribe:(callback: () => void)=>void
     getState:()=>gigaChadPropsType
 
-    updateNewPostText:(newText:string)=>void
-    addPost: (postText: string) =>void
-
 
     dispatch: (action:ActionsTypes ) => void
 }

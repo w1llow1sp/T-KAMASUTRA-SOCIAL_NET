@@ -87,21 +87,6 @@ const store:storeType = {
         this._onChange = callback
     },
 
-    updateNewPostText (newText: string) {
-        this._state.profilePage.newPostText =newText;
-        this._onChange()
-    },
-    addPost (postText: string) {
-        const newPost : postsDataPropsType = {
-            id: v1(),
-            message: postText,
-            likesCount:createRandomLikes()
-        }
-        this._state.profilePage.posts.unshift(newPost)
-        this._onChange()
-    },
-
-
 
     dispatch (action) {
          if (action.type === 'ADD-POST') {
