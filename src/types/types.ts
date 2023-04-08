@@ -31,11 +31,15 @@ export type messagesDataPropsType ={
 }
 export type storeType= {
     _state:gigaChadPropsType
-    updateNewPostText:(newText:string)=>void
-    addPost: (postText: string) =>void
     _onChange:()=>void
+
     subscribe:(callback: () => void)=>void
     getState:()=>gigaChadPropsType
+
+    updateNewPostText:(newText:string)=>void
+    addPost: (postText: string) =>void
+
+
     dispatch: (action:ActionsTypes ) => void
 }
 
@@ -63,12 +67,6 @@ export  type appStatePropsType = {
     dispatch: (action:ActionsTypes ) => void
 }
 
-// Ложечка за пропсы в App.tsx
-/*export  type appStatePropsType = {
-    store : gigaChadPropsType
-    addPostCallback:(postText:string)=> void
-    updateNewPostTextCallback:(newText: string)=>void
-}*/
 
 // Ложечка за пропсы в диалогах (прости господи)
 export type dialogsPropsType ={
@@ -79,10 +77,8 @@ export type dialogsPropsType ={
 // Ложечка за типизацию  MyPosts
 export type ProfileProps ={
     posts:Array<postsDataPropsType>
-    addPostCallback:(postText:string)=> void
-    updateNewPostTextCallback:(newText: string)=>void
-    newPostText:string
     dispatch: (action:ActionsTypes ) => void
+    newPostText:string
 }
 //
 /*------Типы для пропсов из index.tsx в App, нам надо передать 3 массива------*/

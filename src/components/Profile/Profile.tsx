@@ -12,7 +12,7 @@ const Profile =(props:ProfileProps)=> {
     return (
         <div className={styles.content}>
             <ProfileInfo/>
-           <MyPosts dispatch={props.dispatch} posts={props.posts} addPostCallback={props.addPostCallback} newPostText={props.newPostText} updateNewPostTextCallback={props.updateNewPostTextCallback} />
+           <MyPosts dispatch={props.dispatch} posts={props.posts} newPostText={props.newPostText}  />
         </div>
     )
 }
