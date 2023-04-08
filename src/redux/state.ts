@@ -1,4 +1,4 @@
-import {postsDataPropsType, storeType} from "../types/types";
+import { postsDataPropsType, storeType} from "../types/types";
 import  {v1} from "uuid";
 
 const createRandomLikes = () => {
@@ -6,6 +6,21 @@ const createRandomLikes = () => {
     let  max = Math.ceil(100)
     return Math.floor(Math.random() * (max-min)) + min
 
+}
+
+
+export const addPostAC= (postText:string)  => {
+    return{
+        type:'ADD-POST',
+        postText:postText
+    } as const
+}
+
+export const changePostAC= (newText:string)  => {
+    return{
+        type:'CHANGE-NEW-TEXT',
+        newText:newText
+    }  as const
 }
 
 const store:storeType = {

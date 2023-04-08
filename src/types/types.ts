@@ -1,7 +1,7 @@
 /*------Типы для пропсов из index.tsx в App, нам надо передать 3 массива------*/
 
 
-import store from "../redux/state";
+import store, {addPostAC, changePostAC} from "../redux/state";
 
 export type postsDataPropsType ={
     id:string,
@@ -13,17 +13,20 @@ export type dialogsDataPropsType ={
     id: string
     name:string
 }
-type AddPostActionType = {
+/*
+export type AddPostActionType = {
     type:'ADD-POST'
     postText:string
 }
 
-type ChaneNewTextActionType = {
+export type ChaneNewTextActionType = {
     type:'CHANGE-NEW-TEXT'
     newText:string
 }
+*/
 
-export type ActionsTypes = AddPostActionType | ChaneNewTextActionType
+
+export type ActionsTypes = ReturnType<typeof addPostAC>|ReturnType<typeof changePostAC>
 
 export type messagesDataPropsType ={
     id: string

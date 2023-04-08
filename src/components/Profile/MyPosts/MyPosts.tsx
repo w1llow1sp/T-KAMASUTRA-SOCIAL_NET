@@ -2,22 +2,20 @@ import React, {ChangeEvent} from "react";
 import styles from './MyPosts.module.css'
 import Post from "./Post/Post";
 import {ProfileProps} from "../../../types/types";
+import {addPostAC, changePostAC} from "../../../redux/state";
 
 
 const MyPosts = (props: ProfileProps) => {
     //TODO:Подумать как избавиться от newPostText
 
     function addPost() {
-        //props.addPostCallback(props.newPostText)
-        props.dispatch({type: 'ADD-POST',postText:props.newPostText})
-        //props.updateNewPostTextCallback('')
-        props.dispatch({type:'CHANGE-NEW-TEXT', newText:''})
+        props.dispatch(addPostAC(props.newPostText))
+        props.dispatch(changePostAC(''))
     }
 
     let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-
         //props.updateNewPostTextCallback(e.currentTarget.value)
-        props.dispatch({type:'CHANGE-NEW-TEXT',newText:e.currentTarget.value})
+        props.dispatch(changePostAC(e.currentTarget.value))
     }
 
     let postsElement = props.posts.map(post =>
