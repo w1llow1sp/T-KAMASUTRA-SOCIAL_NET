@@ -1,6 +1,7 @@
 /*------Типы для пропсов из index.tsx в App, нам надо передать 3 массива------*/
 
-import {updateNewPostText} from "../redux/state";
+
+import store from "../redux/state";
 
 export type postsDataPropsType ={
     id:string,
@@ -17,6 +18,15 @@ export type messagesDataPropsType ={
     id: string
     message: string
 }
+export type storeType= {
+    _state:gigaChadPropsType
+    updateNewPostText:(newText:string)=>void
+    addPost: (postText: string) =>void
+    _onChange:()=>void
+    subscribe:(callback: () => void)=>void
+    getState:()=>gigaChadPropsType
+}
+
 // Так как нам надо будет передать несколько  массивов в Dialogs, то позаботимся об этом заранее и создадим тип для них
 
 export type ProfilePageTypes = {
@@ -36,10 +46,15 @@ export type gigaChadPropsType ={
 
 // Ложечка за пропсы в App.tsx
 export  type appStatePropsType = {
-    state : gigaChadPropsType
+    store : storeType
+}
+
+// Ложечка за пропсы в App.tsx
+/*export  type appStatePropsType = {
+    store : gigaChadPropsType
     addPostCallback:(postText:string)=> void
     updateNewPostTextCallback:(newText: string)=>void
-}
+}*/
 
 // Ложечка за пропсы в диалогах (прости господи)
 export type dialogsPropsType ={

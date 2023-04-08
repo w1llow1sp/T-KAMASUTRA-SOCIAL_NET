@@ -10,7 +10,9 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import {appStatePropsType} from "./types/types";
 
-const App = (props:appStatePropsType) => {
+const App:React.FC<appStatePropsType> = (props) => {
+
+    const state =props.store.getState()
 
     return (
         <BrowserRouter>
@@ -18,12 +20,14 @@ const App = (props:appStatePropsType) => {
             <Header/>
             <Navbar/>
             <div className='app-wrapper-content'>
-                <Route path='/dialogs' render={()=><Dialogs dialogsProps={props.state.profilePage.dialogs} messageProps={props.state.messagePage.messages} />}/>
+                <Route path='/dialogs' render={()=><Dialogs
+                    dialogsProps={state.profilePage.dialogs}
+                    messageProps={state.messagePage.messages} />}/>
                 <Route path='/profile' render={()=><Profile
-                    posts={props.state.profilePage.posts}
-                    addPostCallback={props.addPostCallback}
-                    newPostText={props.state.profilePage.newPostText}
-                    updateNewPostTextCallback={props.updateNewPostTextCallback}/>}/>
+                    posts={state.profilePage.posts}
+                    addPostCallback={props.store.addPost.bind(props.store)}
+                    newPostText={state.profilePage.newPostText}
+                    updateNewPostTextCallback={props.store.updateNewPostText.bind(props.store)}/>}/>
                 <Route path='/news' component={News}/>
                 <Route path='/music' component={Music}/>
                 <Route path='/settings' component={Settings}/>
