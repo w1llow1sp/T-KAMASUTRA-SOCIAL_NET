@@ -3,8 +3,7 @@ import styles from './Dialogs.module.css'
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 import {dialogsPropsType} from "../../types/types";
-import {sendMessageAC, updateMessageAC} from "../../redux/state";
-
+import {sendMessageAC,updateMessageAC} from "../../redux/message-reducer";
 
 
 const Dialogs = (props:dialogsPropsType) => {

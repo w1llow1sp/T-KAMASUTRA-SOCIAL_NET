@@ -18,5 +18,18 @@ import {ActionsTypes, messagePageType} from "../types/types";
              return state
      }
  }
+export const updateMessageAC= (body:string)  => {
+    return{
+        type:'UPDATE-NEW-MESSAGE-BODY',
+        body:body
+    }  as const
+}
+
+export const sendMessageAC= (msg:string)  => {
+    return{
+        type:'SEND-MESSAGE',
+        newMessageBody:msg
+    }  as const
+}
 
 export default messageReducer

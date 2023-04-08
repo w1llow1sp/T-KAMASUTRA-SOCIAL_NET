@@ -21,4 +21,20 @@ import {createRandomLikes} from "./state";
 
  }
 
+export const addPostAC= (postText:string)  => {
+    return{
+        type:'ADD-POST',
+        postText:postText
+    } as const
+}
+
+export const changePostAC= (newText:string)  => {
+    return{
+        type:'CHANGE-NEW-TEXT',
+        newText:newText
+    }  as const
+}
+
+
+
 export default profileReducer

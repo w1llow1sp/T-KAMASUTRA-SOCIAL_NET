@@ -1,7 +1,7 @@
 /*------Типы для пропсов из index.tsx в App, нам надо передать 3 массива------*/
 
-
-import {addPostAC, changePostAC, sendMessageAC, updateMessageAC} from "../redux/state";
+import {addPostAC,changePostAC} from "../redux/profile-reducer";
+import {updateMessageAC,sendMessageAC} from "../redux/message-reducer";
 
 export type postsDataPropsType ={
     id:string,
