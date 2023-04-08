@@ -1,5 +1,6 @@
 import { postsDataPropsType, storeType} from "../types/types";
 import  {v1} from "uuid";
+import {message} from "antd";
 
 const createRandomLikes = () => {
     let min = Math.ceil(0)
@@ -7,7 +8,6 @@ const createRandomLikes = () => {
     return Math.floor(Math.random() * (max-min)) + min
 
 }
-
 
 export const addPostAC= (postText:string)  => {
     return{
@@ -22,6 +22,21 @@ export const changePostAC= (newText:string)  => {
         newText:newText
     }  as const
 }
+
+export const updateMessageAC= (body:string)  => {
+    return{
+        type:'UPDATE-NEW-MESSAGE-BODY',
+        body:body
+    }  as const
+}
+
+export const sendMessageAC= (msg:string)  => {
+    return{
+        type:'SEND-MESSAGE',
+        newMessageBody:msg
+    }  as const
+}
+
 
 const store:storeType = {
      _state :{
@@ -38,6 +53,9 @@ const store:storeType = {
                     likesCount:createRandomLikes()
                 },
             ],
+
+        },
+        messagePage:{
             dialogs:[
                 {
                     id: v1(),
@@ -66,9 +84,6 @@ const store:storeType = {
                 },
 
             ],
-
-        },
-        messagePage:{
             messages: [
                 {
                     id: v1(),
@@ -86,7 +101,8 @@ const store:storeType = {
                     id: v1(),
                     message: 'How about a call on Discord?'
                 },
-            ]
+            ],
+            newMessageBody: '',
 
         },
     },
@@ -115,6 +131,18 @@ const store:storeType = {
          } else if (action.type === 'CHANGE-NEW-TEXT') {
              this._state.profilePage.newPostText =action.newText;
              this._onChange()
+         } else if (action.type === 'UPDATE-NEW-MESSAGE-BODY') {
+             this._state.messagePage.newMessageBody =action.body;
+             this._onChange()
+         }else if (action.type === 'SEND-MESSAGE') {
+             let body =this._state.messagePage.newMessageBody;
+             this._state.messagePage.newMessageBody = '';
+             this._state.messagePage.messages.push(
+                 {
+                     id: v1(),
+                     message: body})
+             this._onChange()
+
          }
     }
 

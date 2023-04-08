@@ -1,7 +1,7 @@
 /*------Типы для пропсов из index.tsx в App, нам надо передать 3 массива------*/
 
 
-import store, {addPostAC, changePostAC} from "../redux/state";
+import {addPostAC, changePostAC, sendMessageAC, updateMessageAC} from "../redux/state";
 
 export type postsDataPropsType ={
     id:string,
@@ -13,20 +13,12 @@ export type dialogsDataPropsType ={
     id: string
     name:string
 }
-/*
-export type AddPostActionType = {
-    type:'ADD-POST'
-    postText:string
-}
 
-export type ChaneNewTextActionType = {
-    type:'CHANGE-NEW-TEXT'
-    newText:string
-}
-*/
-
-
-export type ActionsTypes = ReturnType<typeof addPostAC>|ReturnType<typeof changePostAC>
+export type ActionsTypes =
+    ReturnType<typeof addPostAC>
+    |ReturnType<typeof changePostAC>
+    |ReturnType<typeof updateMessageAC>
+    |ReturnType<typeof sendMessageAC>
 
 export type messagesDataPropsType ={
     id: string
@@ -48,11 +40,11 @@ export type storeType= {
 export type ProfilePageTypes = {
     newPostText:string
     posts: Array<postsDataPropsType>
-    dialogs:Array<dialogsDataPropsType>
-
 }
 export type messagePageType = {
     messages:Array<messagesDataPropsType>
+    dialogs:Array<dialogsDataPropsType>
+    newMessageBody:string
 }
 // шаманим теперь с appState  и призываем гига-чад типизацию
 // а што ты мне сделаешь, я в другом городе
@@ -72,6 +64,8 @@ export  type appStatePropsType = {
 export type dialogsPropsType ={
     dialogsProps:Array<dialogsDataPropsType>
     messageProps:Array<messagesDataPropsType>
+    newMessageBody:string
+    dispatch: (action:ActionsTypes ) => void
 }
 
 // Ложечка за типизацию  MyPosts
