@@ -7,7 +7,8 @@ import {ProfileProps} from "../../../types/types";
 const MyPosts = (props: ProfileProps) => {
 
     function addPost() {
-        props.addPostCallback(props.newPostText)
+        //props.addPostCallback(props.newPostText)
+        props.dispatch({type: 'ADD-POST',postText:props.newPostText})
         props.updateNewPostTextCallback('')
     }
 

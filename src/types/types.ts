@@ -13,6 +13,17 @@ export type dialogsDataPropsType ={
     id: string
     name:string
 }
+type AddPostActionType = {
+    type:'ADD-POST'
+    postText:string
+}
+
+type ChaneNewTextActionType = {
+    type:'CHANGE-NEW-TEXT'
+    newText:string
+}
+
+export type ActionsTypes = AddPostActionType | ChaneNewTextActionType
 
 export type messagesDataPropsType ={
     id: string
@@ -25,6 +36,7 @@ export type storeType= {
     _onChange:()=>void
     subscribe:(callback: () => void)=>void
     getState:()=>gigaChadPropsType
+    dispatch: (action:ActionsTypes ) => void
 }
 
 // Так как нам надо будет передать несколько  массивов в Dialogs, то позаботимся об этом заранее и создадим тип для них
@@ -33,6 +45,7 @@ export type ProfilePageTypes = {
     newPostText:string
     posts: Array<postsDataPropsType>
     dialogs:Array<dialogsDataPropsType>
+
 }
 export type messagePageType = {
     messages:Array<messagesDataPropsType>
@@ -47,6 +60,7 @@ export type gigaChadPropsType ={
 // Ложечка за пропсы в App.tsx
 export  type appStatePropsType = {
     store : storeType
+    dispatch: (action:ActionsTypes ) => void
 }
 
 // Ложечка за пропсы в App.tsx
@@ -68,6 +82,7 @@ export type ProfileProps ={
     addPostCallback:(postText:string)=> void
     updateNewPostTextCallback:(newText: string)=>void
     newPostText:string
+    dispatch: (action:ActionsTypes ) => void
 }
 //
 /*------Типы для пропсов из index.tsx в App, нам надо передать 3 массива------*/

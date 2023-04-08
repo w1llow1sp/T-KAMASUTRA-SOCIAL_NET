@@ -75,6 +75,18 @@ const store:storeType = {
 
         },
     },
+    _onChange() {
+        console.log('State changed')
+    },
+
+    getState() {
+        return this._state
+    },
+    subscribe(callback) {
+        callback()
+        this._onChange = callback
+    },
+
     updateNewPostText (newText: string) {
         this._state.profilePage.newPostText =newText;
         this._onChange()
@@ -88,15 +100,22 @@ const store:storeType = {
         this._state.profilePage.posts.unshift(newPost)
         this._onChange()
     },
-     _onChange() {
-        console.log('State changed')
-    },
-   subscribe(callback) {
-        callback()
-        this._onChange = callback
-    },
-    getState() {
-         return this._state
+
+
+
+    dispatch (action) {
+         if (action.type === 'ADD-POST') {
+             const newPost : postsDataPropsType = {
+                 id: v1(),
+                 message:action.postText,
+                 likesCount:createRandomLikes()
+             }
+             this._state.profilePage.posts.unshift(newPost)
+             this._onChange()
+         } else if (action.type === 'CHANGE-NEW-TEXT') {
+             this._state.profilePage.newPostText =action.newText;
+             this._onChange()
+         }
     }
 
 }

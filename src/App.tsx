@@ -25,6 +25,7 @@ const App:React.FC<appStatePropsType> = (props) => {
                     messageProps={state.messagePage.messages} />}/>
                 <Route path='/profile' render={()=><Profile
                     posts={state.profilePage.posts}
+                    dispatch ={props.store.dispatch.bind(props.store)}
                     addPostCallback={props.store.addPost.bind(props.store)}
                     newPostText={state.profilePage.newPostText}
                     updateNewPostTextCallback={props.store.updateNewPostText.bind(props.store)}/>}/>
