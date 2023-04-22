@@ -21,14 +21,19 @@ const App:React.FC<appStatePropsType> = (props) => {
             <Navbar/>
             <div className='app-wrapper-content'>
                 <Route path='/dialogs' render={()=><Dialogs
-                    dialogsProps={state.messagePage.dialogs}
-                    messageProps={state.messagePage.messages}
-                    newMessageBody={state.messagePage.newMessageBody}
+                    dialogsProps={state.messageReducer.dialogs}
+                    messageProps={state.messageReducer.messages}
+                    newMessageBody={state.messageReducer.newMessageBody}
+                    /* dialogsProps={state.messagePage.dialogs}*/
+/*                    messageProps={state.messagePage.messages}
+                    newMessageBody={state.messagePage.newMessageBody}*/
                     dispatch ={props.dispatch}
                 />}/>
                 <Route path='/profile' render={()=><Profile
-                    posts={state.profilePage.posts}
-                    newPostText={state.profilePage.newPostText}
+/*                    posts={state.profilePage.posts}
+                    newPostText={state.profilePage.newPostText}*/
+                    posts={state.profileReducer.posts}
+                    newPostText={state.profileReducer.newPostText}
                     dispatch ={props.dispatch}
                 />}/>
                 <Route path='/news' component={News}/>

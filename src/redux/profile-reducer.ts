@@ -1,8 +1,23 @@
 import {ActionsTypes, postsDataPropsType, ProfilePageTypes, ProfileProps} from "../types/types";
 import {v1} from "uuid";
-import {createRandomLikes} from "./state";
+import {createRandomLikes} from "./store";
 
- const profileReducer =(state:ProfilePageTypes,action:ActionsTypes) => {
+let initialState = {
+    newPostText:'',
+    posts:[
+        {
+            id: v1(),
+            message: 'Its my first post!',
+            likesCount:createRandomLikes()
+        }, {
+            id: v1(),
+            message: 'I think to make some coffee..',
+            likesCount:createRandomLikes()
+        },
+    ],
+}
+
+ const profileReducer = ( state = initialState,action:ActionsTypes) => {
      switch (action.type) {
          case "ADD-POST":
              const newPost: postsDataPropsType = {

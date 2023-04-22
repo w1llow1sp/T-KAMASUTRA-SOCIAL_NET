@@ -2,6 +2,8 @@
 
 import {addPostAC,changePostAC} from "../redux/profile-reducer";
 import {updateMessageAC,sendMessageAC} from "../redux/message-reducer";
+import {EmptyObject, Store} from "redux";
+
 
 export type postsDataPropsType ={
     id:string,
@@ -35,6 +37,20 @@ export type storeType= {
     dispatch: (action:ActionsTypes ) => void
 }
 
+
+
+export type reduxStoreType =
+    Store<{
+    profileReducer: {
+        newPostText: string;
+        posts:Array<postsDataPropsType>; };
+    messageReducer: {
+        dialogs: Array<dialogsDataPropsType>;
+        messages: Array<messagesDataPropsType>;
+        newMessageBody: string;
+    }; },
+        ActionsTypes>
+
 // Так как нам надо будет передать несколько  массивов в Dialogs, то позаботимся об этом заранее и создадим тип для них
 
 export type ProfilePageTypes = {
@@ -56,7 +72,8 @@ export type gigaChadPropsType ={
 
 // Ложечка за пропсы в App.tsx
 export  type appStatePropsType = {
-    store : storeType
+    /*store : storeType*/
+    store:reduxStoreType
     dispatch: (action:ActionsTypes ) => void
 }
 
