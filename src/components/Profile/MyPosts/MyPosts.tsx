@@ -1,25 +1,28 @@
 import React, {ChangeEvent} from "react";
 import styles from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {ProfileProps} from "../../../types/types";
-import {addPostAC,changePostAC} from "../../../redux/profile-reducer";
+import {postsDataPropsType} from "../../../types/types";
 
 
-const MyPosts = (props: ProfileProps) => {
-    //TODO:Подумать как избавиться от newPostText
 
-    function addPost() {
-        props.dispatch(addPostAC(props.newPostText))
-        props.dispatch(changePostAC(''))
+type MPContainerProps = {
+    updateNewPostText: (text:string)=> void
+    addPost:()=>void
+    posts:Array<postsDataPropsType>
+    newPostText:string
+}
+const MyPosts = (props: MPContainerProps) => {
+
+    function OnAddPost() {
+        props.addPost()
     }
 
     let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch(changePostAC(e.currentTarget.value))
+        let text  = e.currentTarget.value
+        props.updateNewPostText(text)
     }
-
     let postsElement = props.posts.map(post =>
         <Post key={post.id} message={post.message} likesCount={post.likesCount}/>)
-
 
     return (
         <div className={styles.postsBlock}>
@@ -30,7 +33,7 @@ const MyPosts = (props: ProfileProps) => {
                     value={props.newPostText}/></div>
 
                 <div>
-                    <button onClick={addPost}>Add post</button>
+                    <button onClick={OnAddPost}>Add post</button>
                 </div>
 
             </div>

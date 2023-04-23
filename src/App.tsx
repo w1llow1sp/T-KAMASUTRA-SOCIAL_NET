@@ -9,6 +9,7 @@ import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import {appStatePropsType} from "./types/types";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 const App:React.FC<appStatePropsType> = (props) => {
 
@@ -20,18 +21,13 @@ const App:React.FC<appStatePropsType> = (props) => {
             <Header/>
             <Navbar/>
             <div className='app-wrapper-content'>
-                <Route path='/dialogs' render={()=><Dialogs
+                <Route path='/dialogs' render={()=><DialogsContainer
                     dialogsProps={state.messageReducer.dialogs}
                     messageProps={state.messageReducer.messages}
                     newMessageBody={state.messageReducer.newMessageBody}
-                    /* dialogsProps={state.messagePage.dialogs}*/
-/*                    messageProps={state.messagePage.messages}
-                    newMessageBody={state.messagePage.newMessageBody}*/
                     dispatch ={props.dispatch}
                 />}/>
                 <Route path='/profile' render={()=><Profile
-/*                    posts={state.profilePage.posts}
-                    newPostText={state.profilePage.newPostText}*/
                     posts={state.profileReducer.posts}
                     newPostText={state.profileReducer.newPostText}
                     dispatch ={props.dispatch}
