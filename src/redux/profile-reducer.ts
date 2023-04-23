@@ -17,7 +17,7 @@ let initialState = {
     ],
 }
 
- const profileReducer = ( state = initialState,action:ActionsTypes) => {
+/* const profileReducer = ( state = initialState,action:ActionsTypes) => {
      switch (action.type) {
          case "ADD-POST":
              const newPost: postsDataPropsType = {
@@ -34,7 +34,29 @@ let initialState = {
              return state
      }
 
- }
+ }*/
+
+const profileReducer = (state = initialState, action: ActionsTypes): ProfilePageTypes => {
+    switch (action.type) {
+        case "ADD-POST":
+            const newPost: postsDataPropsType = {
+                id: v1(),
+                message: action.postText,
+                likesCount: createRandomLikes(),
+            };
+            return {
+                ...state,
+                posts: [newPost, ...state.posts],
+            };
+        case "CHANGE-NEW-TEXT":
+            return {
+                ...state,
+                newPostText: action.newText,
+            };
+        default:
+            return state;
+    }
+};
 
 export const addPostAC= (postText:string)  => {
     return{

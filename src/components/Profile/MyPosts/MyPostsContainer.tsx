@@ -1,33 +1,72 @@
+/*
 import React, {ChangeEvent} from "react";
-import styles from './MyPosts.module.css'
-import Post from "./Post/Post";
-import {ProfileProps} from "../../../types/types";
-import {addPostAC,changePostAC} from "../../../redux/profile-reducer";
+import {addPostAC, changePostAC} from "../../../redux/profile-reducer";
 import MyPosts from "./MyPosts";
+import StoreContext from "../../../StoreContext";
 
 
-const MyPostsContainer = (props: ProfileProps) => {
-    //TODO:Подумать как избавиться от newPostText
+    const MyPostsContainer = () => {
+        return (
+            <StoreContext.Consumer>
+                {
+                    (store) => {
+                        let state = store.getState() // здесь нужно использовать store, а не props.store
+                        function addPost() {
+                            store.dispatch(addPostAC(state.profilePage.newPostText)) // здесь нужно использовать state.profilePage.newPostText, а не props.newPostText
+                            store.dispatch(changePostAC(''))
+                        }
 
-    function addPost() {
-        props.dispatch(addPostAC(props.newPostText))
-        props.dispatch(changePostAC(''))
+                        let onPostChange = (text: string) => {
+                            store.dispatch(changePostAC(text))
+                        }
+                        // здесь не нужно ставить новую строку после ключевого слова return, потому что в этом случае будет возвращен undefined
+                        return (
+                            <MyPosts
+                                updateNewPostText={onPostChange}
+                                addPost={addPost}
+                                posts={state.profilePage.posts}
+                                newPostText={state.profilePage.newPostText} // здесь нужно использовать state.profilePage.newPostText, а не props.newPostText
+                            />
+                        );
+                    }
+                }
+            </StoreContext.Consumer>
+        )
     }
 
-    let onPostChange = (text:string) => {
-        props.dispatch(changePostAC(text))
-    }
+            export default MyPostsContainer;*/
 
+import React, { ChangeEvent } from "react";
+import { addPostAC, changePostAC } from "../../../redux/profile-reducer";
+import MyPosts from "./MyPosts";
+import StoreContext from "../../../StoreContext";
 
+const MyPostsContainer = () => {
     return (
-        <MyPosts
-             updateNewPostText={onPostChange}
-             addPost={addPost}
-             posts={props.posts}
-             newPostText={props.newPostText}
-        />
+        <StoreContext.Consumer>
+            {(store) => {
+                let state = store.getState();
 
-    )
+                function addPost() {
+                    store.dispatch(addPostAC(state.profilePage.newPostText));
+                    store.dispatch(changePostAC(''));
+                }
+
+                let onPostChange = (text: string) => {
+                    store.dispatch(changePostAC(text));
+                };
+
+                return (
+                    <MyPosts
+                        updateNewPostText={onPostChange}
+                        addPost={addPost}
+                        posts={state.profilePage.posts}
+                        newPostText={state.profilePage.newPostText}
+                    />
+                );
+            }}
+        </StoreContext.Consumer>
+    );
 };
 
 export default MyPostsContainer;

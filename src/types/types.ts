@@ -72,25 +72,39 @@ export type gigaChadPropsType ={
 
 // Ложечка за пропсы в App.tsx
 export  type appStatePropsType = {
-    /*store : storeType*/
+    store : storeType
+}
+/*
+export  type appStatePropsType = {
+    /!*store : storeType*!/
     store:reduxStoreType
     dispatch: (action:ActionsTypes ) => void
 }
 
+*/
+
 
 // Ложечка за пропсы в диалогах (прости господи)
-export type dialogsPropsType ={
+/*export type dialogsPropsType ={
     dialogsProps:Array<dialogsDataPropsType>
     messageProps:Array<messagesDataPropsType>
     newMessageBody:string
     dispatch: (action:ActionsTypes ) => void
+}*/
+export type dialogsPropsType ={
+    store:storeType
 }
 
+
 // Ложечка за типизацию  MyPosts
-export type ProfileProps ={
+/*export type ProfileProps ={
     posts:Array<postsDataPropsType>
     dispatch: (action:ActionsTypes ) => void
     newPostText:string
+}*/
+
+export type ProfileProps = {
+    store:storeType
 }
 //
 /*------Типы для пропсов из index.tsx в App, нам надо передать 3 массива------*/

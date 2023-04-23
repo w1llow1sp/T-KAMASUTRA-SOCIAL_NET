@@ -2,32 +2,31 @@ import React, {ChangeEvent, FC} from 'react';
 import styles from './Dialogs.module.css'
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
-import {dialogsDataPropsType, dialogsPropsType, messagesDataPropsType} from "../../types/types";
-import {sendMessageAC, updateMessageAC} from "../../redux/message-reducer";
+import {messagePageType,} from "../../types/types";
+
 
 type DialogContainerProps = {
-    updateNewMessageBody: (body: string) => void
+    updateNewMessageBody: (body:string) => void
     sendMessage: () => void
-    dialogsPage: Array<dialogsDataPropsType>
-    messagePage: Array<messagesDataPropsType>
-    newMessageBody: string
+    dialogsPage:messagePageType
 }
 
 const Dialogs: FC<DialogContainerProps> = ({
                                                updateNewMessageBody,
                                                sendMessage,
                                                dialogsPage,
-                                               messagePage,
-                                               newMessageBody,
                                            }) => {
-    let DialogsElement = dialogsPage.map(dialog =>
+    let state = dialogsPage
+
+    let DialogsElement = state.dialogs.map(dialog =>
         <DialogItem key={dialog.id} id={dialog.id} name={dialog.name}/>
     )
 
-    let MessagesElement = messagePage.map(msg =>
+    let MessagesElement = state.messages .map(msg =>
         <Message key={msg.id} message={msg.message}/>
     )
 
+    const newMessageBody = state.newMessageBody
 
     let onSendMessageClick = () => {
         sendMessage()

@@ -6,12 +6,12 @@ import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
 
 
-const Profile =(props:ProfileProps)=> {
+const Profile =()=> {
 
     return (
         <div className={styles.content}>
             <ProfileInfo/>
-           <MyPostsContainer dispatch={props.dispatch} posts={props.posts} newPostText={props.newPostText}  />
+           <MyPostsContainer/>
         </div>
     )
 }
