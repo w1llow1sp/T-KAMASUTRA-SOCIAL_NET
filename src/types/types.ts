@@ -2,13 +2,12 @@
 
 import {addPostAC,changePostAC} from "../redux/profile-reducer";
 import {updateMessageAC,sendMessageAC} from "../redux/message-reducer";
-import {EmptyObject, Store} from "redux";
+import { Store} from "redux";
 
 
 export type postsDataPropsType ={
     id:string,
     message:string,
-    likesCount:number
 }
 
 export type dialogsDataPropsType ={
@@ -70,38 +69,9 @@ export type gigaChadPropsType ={
     messagePage:messagePageType
 }
 
-// Ложечка за пропсы в App.tsx
-export  type appStatePropsType = {
-    store : storeType
-}
-/*
-export  type appStatePropsType = {
-    /!*store : storeType*!/
-    store:reduxStoreType
-    dispatch: (action:ActionsTypes ) => void
-}
-
-*/
-
-
-// Ложечка за пропсы в диалогах (прости господи)
-/*export type dialogsPropsType ={
-    dialogsProps:Array<dialogsDataPropsType>
-    messageProps:Array<messagesDataPropsType>
-    newMessageBody:string
-    dispatch: (action:ActionsTypes ) => void
-}*/
 export type dialogsPropsType ={
     store:storeType
 }
-
-
-// Ложечка за типизацию  MyPosts
-/*export type ProfileProps ={
-    posts:Array<postsDataPropsType>
-    dispatch: (action:ActionsTypes ) => void
-    newPostText:string
-}*/
 
 export type ProfileProps = {
     store:storeType

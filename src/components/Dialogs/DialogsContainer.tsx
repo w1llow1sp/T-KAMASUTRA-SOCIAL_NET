@@ -1,8 +1,41 @@
-import React, { ChangeEvent } from 'react';
-import styles from './Dialogs.module.css';
-import { DialogItem } from './DialogItem/DialogItem';
-import { Message } from './Message/Message';
-import { dialogsPropsType } from '../../types/types';
+import React from 'react';
+import { sendMessageAC, updateMessageAC } from '../../redux/message-reducer';
+import Dialogs from './Dialogs';
+import StoreContext from '../../StoreContext';
+
+const DialogsContainer = () => {
+
+                let onSendMessageClick = () => {
+/*                    store.dispatch(sendMessageAC(newMessageBody));
+                    store.dispatch(updateMessageAC(''));*/
+                };
+
+                let onNewMessageChange = (body:string) => {
+                    /*store.dispatch(updateMessageAC(body));*/
+                };
+
+                return (
+                    <StoreContext.Consumer>
+                        {store => (
+                            <Dialogs
+                                updateNewMessageBody={onNewMessageChange}
+                                sendMessage={onSendMessageClick}
+                                dialogsPage={store.getState().messagePage}
+                            />
+                            )
+
+            }
+        </StoreContext.Consumer>
+    );
+};
+
+export default DialogsContainer;
+
+
+
+
+
+/*import React from 'react';
 import { sendMessageAC, updateMessageAC } from '../../redux/message-reducer';
 import Dialogs from './Dialogs';
 import StoreContext from '../../StoreContext';
@@ -36,4 +69,4 @@ const DialogsContainer = () => {
     );
 };
 
-export default DialogsContainer;
+export default DialogsContainer;*/

@@ -3,12 +3,14 @@ import  {v1} from "uuid";
 import profileReducer from "./profile-reducer";
 import messageReducer from "./message-reducer";
 
+/*
 export const createRandomLikes = () => {
     let min = Math.ceil(0)
     let  max = Math.ceil(100)
     return Math.floor(Math.random() * (max-min)) + min
 
 }
+*/
 
 
 
@@ -21,11 +23,11 @@ const store:storeType = {
                 {
                     id: v1(),
                     message: 'Its my first post!',
-                    likesCount:createRandomLikes()
+                    //likesCount:createRandomLikes()
                 }, {
                     id: v1(),
                     message: 'I think to make some coffee..',
-                    likesCount:createRandomLikes()
+                    //likesCount:createRandomLikes()
                 },
             ],
 
@@ -86,11 +88,11 @@ const store:storeType = {
     },
 
     getState() {
+         debugger
         return this._state
     },
-    subscribe(callback) {
-        callback()
-        this._onChange = callback
+    subscribe(obserder) {
+        this._onChange = obserder
     },
 
 

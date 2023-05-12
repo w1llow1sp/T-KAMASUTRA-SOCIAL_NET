@@ -1,10 +1,12 @@
 
 
 import React from 'react';
-import store from "./redux/redux-store";
+
 import ReactDOM from "react-dom";
 import App from "./App";
-import  {Provider} from "./StoreContext";
+import StoreContext, {Provider} from "./StoreContext";
+import store from "./redux/store";
+
 
 
 const renderTree = () => {

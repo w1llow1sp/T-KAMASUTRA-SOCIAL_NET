@@ -1,6 +1,6 @@
 import {ActionsTypes, postsDataPropsType, ProfilePageTypes, ProfileProps} from "../types/types";
 import {v1} from "uuid";
-import {createRandomLikes} from "./store";
+// import {createRandomLikes} from "./store";
 
 let initialState = {
     newPostText:'',
@@ -8,11 +8,11 @@ let initialState = {
         {
             id: v1(),
             message: 'Its my first post!',
-            likesCount:createRandomLikes()
+            // likesCount:createRandomLikes()
         }, {
             id: v1(),
             message: 'I think to make some coffee..',
-            likesCount:createRandomLikes()
+            // likesCount:createRandomLikes()
         },
     ],
 }
@@ -42,7 +42,7 @@ const profileReducer = (state = initialState, action: ActionsTypes): ProfilePage
             const newPost: postsDataPropsType = {
                 id: v1(),
                 message: action.postText,
-                likesCount: createRandomLikes(),
+                // likesCount: createRandomLikes(),
             };
             return {
                 ...state,

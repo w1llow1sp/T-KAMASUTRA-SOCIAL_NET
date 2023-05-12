@@ -22,7 +22,7 @@ const MyPosts = (props: MPContainerProps) => {
         props.updateNewPostText(text)
     }
     let postsElement = props.posts.map(post =>
-        <Post key={post.id} message={post.message} likesCount={post.likesCount}/>)
+        <Post key={post.id} message={post.message}/>)
 
     return (
         <div className={styles.postsBlock}>

@@ -52,7 +52,7 @@ let initialState = {
 
 }
 
- const messageReducer =(state=initialState,action:ActionsTypes) => {
+ const messageReducer =(state:messagePageType=initialState,action:ActionsTypes) => {
      switch (action.type) {
          case "UPDATE-NEW-MESSAGE-BODY":
 /*             state.newMessageBody =action.body;
