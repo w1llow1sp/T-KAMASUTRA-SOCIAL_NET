@@ -8,12 +8,15 @@ import {postsDataPropsType} from "../../../types/types";
 type MPContainerProps = {
     updateNewPostText: (text:string)=> void
     addPost:()=>void
+/*    updateNewPostText:void
+    addPost:()=>void*/
     posts:Array<postsDataPropsType>
     newPostText:string
 }
 const MyPosts = (props: MPContainerProps) => {
 
     function OnAddPost() {
+
         props.addPost()
     }
 

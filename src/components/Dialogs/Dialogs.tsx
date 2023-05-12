@@ -7,7 +7,7 @@ import {messagePageType,} from "../../types/types";
 
 type DialogContainerProps = {
     updateNewMessageBody: (body:string) => void
-    sendMessage: () => void
+    sendMessage: (msg:string) => void
     dialogsPage:messagePageType
 }
 
@@ -29,7 +29,7 @@ const Dialogs: FC<DialogContainerProps> = ({
     const newMessageBody = state.newMessageBody
 
     let onSendMessageClick = () => {
-        sendMessage()
+        sendMessage(newMessageBody)
     }
 
     let onNewMessageChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
