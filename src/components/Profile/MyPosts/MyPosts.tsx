@@ -1,30 +1,24 @@
-import React, {ChangeEvent} from "react";
+import React, {ChangeEvent, FC} from "react";
 import styles from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {postsDataPropsType} from "../../../types/types";
+import {MyPostContainerProps} from "./MyPostsContainer";
 
 
+const MyPosts :FC<MyPostContainerProps> = ({posts,
+                                               newPostText,
+                                               updateNewPostText,
+                                               addPost}) => {
 
-type MPContainerProps = {
-    updateNewPostText: (text:string)=> void
-    addPost:()=>void
-/*    updateNewPostText:void
-    addPost:()=>void*/
-    posts:Array<postsDataPropsType>
-    newPostText:string
-}
-const MyPosts = (props: MPContainerProps) => {
 
     function OnAddPost() {
-
-        props.addPost()
+        addPost(newPostText)
     }
 
     let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let text  = e.currentTarget.value
-        props.updateNewPostText(text)
+        updateNewPostText(text)
     }
-    let postsElement = props.posts.map(post =>
+    let postsElement = posts.map(post =>
         <Post key={post.id} message={post.message}/>)
 
     return (
@@ -33,7 +27,7 @@ const MyPosts = (props: MPContainerProps) => {
             <div>
                 <div><textarea
                     onChange={onPostChange}
-                    value={props.newPostText}/></div>
+                    value={newPostText}/></div>
 
                 <div>
                     <button onClick={OnAddPost}>Add post</button>

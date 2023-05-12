@@ -1,68 +1,42 @@
 import React from 'react';
 import {sendMessageAC, updateMessageAC} from '../../redux/message-reducer';
 import Dialogs from './Dialogs';
-import StoreContext from '../../StoreContext';
+import {connect} from "react-redux";
+import {AppStateType} from "../../redux/redux-store";
+import {messagePageType} from "../../types/types";
+import {Dispatch} from "redux";
 
-const DialogsContainer = () => {
-    return (
-        <StoreContext.Consumer>
-            {store => {
-                let onSendMessageClick = (msg:string) => {
-                    store.dispatch(sendMessageAC(msg))
-                }
-                let onNewMessageChange = (body:string) => {
-                    store.dispatch(updateMessageAC(body))
-                }
-                return (
-                    <Dialogs
-                        updateNewMessageBody={onNewMessageChange}
-                        sendMessage={onSendMessageClick}
-                        dialogsPage={store.getState().messagePage}
-                    />
-                )
-            }}
+type mapStatePropsType ={
+dialogPage:messagePageType
+}
 
-        </StoreContext.Consumer>
-    );
-};
+type MapDispatchPropsType = {
+    updateNewMessageBody:(msg:string)=>void
+    sendMessage:(body:string)=>void
+}
+
+export type DialogsPropsType = mapStatePropsType & MapDispatchPropsType
+
+let mapStateToProps= (state:AppStateType):mapStatePropsType => {
+    return {
+        dialogPage:state.messagePage
+    }
+}
+let mapDispatchToProps= ( dispatch:Dispatch):MapDispatchPropsType => {
+    return {
+        updateNewMessageBody: (msg:string) => {
+           dispatch(sendMessageAC(msg))
+        },
+        sendMessage:(body:string)=>{
+            dispatch(updateMessageAC(body))
+        }
+    }
+}
+
+
+
+const DialogsContainer = connect(mapStateToProps,mapDispatchToProps) (Dialogs);
 
 export default DialogsContainer;
 
 
-
-
-/*import React from 'react';
-import { sendMessageAC, updateMessageAC } from '../../redux/message-reducer';
-import Dialogs from './Dialogs';
-import StoreContext from '../../StoreContext';
-
-const DialogsContainer = () => {
-    return (
-        <StoreContext.Consumer>
-            {store => {
-                let state = store.getState().messagePage;
-
-                let newMessageBody = state.newMessageBody;
-
-                let onSendMessageClick = () => {
-                    store.dispatch(sendMessageAC(newMessageBody));
-                    store.dispatch(updateMessageAC(''));
-                };
-
-                let onNewMessageChange = (body:string) => {
-                    store.dispatch(updateMessageAC(body));
-                };
-
-                return (
-                    <Dialogs
-                        updateNewMessageBody={onNewMessageChange}
-                        sendMessage={onSendMessageClick}
-                        dialogsPage={state}
-                    />
-                );
-            }}
-        </StoreContext.Consumer>
-    );
-};
-
-export default DialogsContainer;*/

@@ -3,13 +3,17 @@ import { legacy_createStore as createStore} from 'redux'
 import profileReducer from "./profile-reducer";
 import messageReducer from "./message-reducer";
 import {storeType} from "../types/types";
+import {SidebarReducer} from "./sidebar-reducer";
 
-let reducers = combineReducers({
-    profileReducer,
-    messageReducer
+export let RootReducer = combineReducers({
+    profilePage:profileReducer,
+    messagePage:messageReducer,
 });
 
-let store : storeType= createStore(reducers)
+
+export type AppStateType = ReturnType<typeof RootReducer>
+
+let store = createStore(RootReducer)
 
 
 export default store

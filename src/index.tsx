@@ -1,11 +1,9 @@
 
-
 import React from 'react';
-
 import ReactDOM from "react-dom";
 import App from "./App";
-import StoreContext, {Provider} from "./StoreContext";
-import store from "./redux/store";
+import store from "./redux/redux-store";
+import {Provider} from "react-redux";
 
 
 

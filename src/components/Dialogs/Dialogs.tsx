@@ -3,33 +3,28 @@ import styles from './Dialogs.module.css'
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 import {messagePageType,} from "../../types/types";
+import {DialogsPropsType} from "./DialogsContainer";
 
-
-type DialogContainerProps = {
-    updateNewMessageBody: (body:string) => void
-    sendMessage: (msg:string) => void
-    dialogsPage:messagePageType
-}
-
-const Dialogs: FC<DialogContainerProps> = ({
+const Dialogs: FC<DialogsPropsType> = ({
                                                updateNewMessageBody,
                                                sendMessage,
-                                               dialogsPage,
+                                               dialogPage,
                                            }) => {
-    let state = dialogsPage
 
-    let DialogsElement = state.dialogs.map(dialog =>
+
+    let DialogsElement = dialogPage.dialogs.map(dialog =>
         <DialogItem key={dialog.id} id={dialog.id} name={dialog.name}/>
     )
 
-    let MessagesElement = state.messages .map(msg =>
+    let MessagesElement = dialogPage.messages.map(msg =>
         <Message key={msg.id} message={msg.message}/>
     )
 
-    const newMessageBody = state.newMessageBody
+    const newMessageBody = dialogPage.newMessageBody
 
     let onSendMessageClick = () => {
         sendMessage(newMessageBody)
+
     }
 
     let onNewMessageChange = (event: ChangeEvent<HTMLTextAreaElement>) => {

@@ -3,17 +3,6 @@ import  {v1} from "uuid";
 import profileReducer from "./profile-reducer";
 import messageReducer from "./message-reducer";
 
-/*
-export const createRandomLikes = () => {
-    let min = Math.ceil(0)
-    let  max = Math.ceil(100)
-    return Math.floor(Math.random() * (max-min)) + min
-
-}
-*/
-
-
-
 
 const store:storeType = {
      _state :{
