@@ -47,6 +47,7 @@ const profileReducer = (state = initialState, action: ActionsTypes): ProfilePage
             return {
                 ...state,
                 posts: [newPost, ...state.posts],
+                newPostText:''
             };
         case "CHANGE-NEW-TEXT":
             return {

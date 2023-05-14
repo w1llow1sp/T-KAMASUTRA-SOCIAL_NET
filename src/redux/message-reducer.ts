@@ -55,27 +55,19 @@ let initialState = {
  const messageReducer =(state:messagePageType=initialState,action:ActionsTypes) => {
      switch (action.type) {
          case "UPDATE-NEW-MESSAGE-BODY":
-/*             state.newMessageBody =action.body;
-             return state*/
              return {
                  ...state,
                  newMessageBody: action.body,
              };
          case "SEND-MESSAGE":
-/*             let body =state.newMessageBody;
-             state.newMessageBody = '';
-             state.messages.push(
-                 {
-                     id: v1(),
-                     message: body})
-             return state*/
+             let body = state.newMessageBody
              return {
                  ...state,
                  messages: [
                      ...state.messages,
                      {
                          id: v1(),
-                         message: state.newMessageBody,
+                         message: body,
                      },
                  ],
                  newMessageBody: "",
@@ -91,10 +83,9 @@ export const updateMessageAC= (body:string)  => {
     }  as const
 }
 
-export const sendMessageAC= (msg:string)  => {
+export const sendMessageAC= ()  => {
     return{
         type:'SEND-MESSAGE',
-        newMessageBody:msg
     }  as const
 }
 

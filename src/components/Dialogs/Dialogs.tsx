@@ -23,7 +23,7 @@ const Dialogs: FC<DialogsPropsType> = ({
     const newMessageBody = dialogPage.newMessageBody
 
     let onSendMessageClick = () => {
-        sendMessage(newMessageBody)
+        sendMessage()
 
     }
 

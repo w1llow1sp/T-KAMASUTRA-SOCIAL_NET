@@ -70,7 +70,7 @@ let mapDispatchProps = (dispatch:Dispatch):mapDispatchProps => {
             dispatch(changePostAC(''))
         },
         updateNewPostText:(postText:string) => {
-            dispatch(addPostAC(postText))
+            dispatch(changePostAC(postText))
 
         }
     }
