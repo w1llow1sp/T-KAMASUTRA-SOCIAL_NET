@@ -17,24 +17,6 @@ let initialState = {
     ],
 }
 
-/* const profileReducer = ( state = initialState,action:ActionsTypes) => {
-     switch (action.type) {
-         case "ADD-POST":
-             const newPost: postsDataPropsType = {
-                 id: v1(),
-                 message: action.postText,
-                 likesCount: createRandomLikes(),
-             }
-             state.posts.unshift(newPost)
-             return state
-         case "CHANGE-NEW-TEXT":
-             state.newPostText = action.newText;
-             return state
-         default:
-             return state
-     }
-
- }*/
 
 const profileReducer = (state = initialState, action: ActionsTypes): ProfilePageTypes => {
     switch (action.type) {

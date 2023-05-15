@@ -3,6 +3,7 @@
 import {addPostAC,changePostAC} from "../redux/profile-reducer";
 import {updateMessageAC,sendMessageAC} from "../redux/message-reducer";
 import { Store} from "redux";
+import {followAC, setUsersAC, unfollowAC} from "../redux/user-reducer";
 
 
 export type postsDataPropsType ={
@@ -20,6 +21,9 @@ export type ActionsTypes =
     |ReturnType<typeof changePostAC>
     |ReturnType<typeof updateMessageAC>
     |ReturnType<typeof sendMessageAC>
+    |ReturnType<typeof followAC>
+    |ReturnType<typeof unfollowAC>
+    |ReturnType<typeof setUsersAC>
 
 export type messagesDataPropsType ={
     id: string
@@ -69,9 +73,6 @@ export type gigaChadPropsType ={
     messagePage:messagePageType
 }
 
-export type dialogsPropsType ={
-    store:storeType
-}
 
 export type ProfileProps = {
     store:storeType
