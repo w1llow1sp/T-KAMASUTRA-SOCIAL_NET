@@ -7,16 +7,17 @@ const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET-USERS'
 
 export type UserType = {
+    name: string,
     id: number
-    photoURL:string
-    followed:boolean
-    fullName: string
+    uniqueUrlName: string
+    photos: {
+        small: string
+        large: string
+    },
     status: string
-    location: {
-        city: string
-        country: string
-    }
+    followed: boolean
 }
+
 export type InitialStateType = {
     users:Array<UserType>
 }
