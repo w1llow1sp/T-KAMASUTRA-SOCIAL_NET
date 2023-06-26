@@ -7,7 +7,7 @@ import USER_PIC from './images.png'
 
  class UsersC extends React.Component<UsersContainerProps> {
 
-
+//жизненный цикл, life cycle methods, componentDidMount
     componentDidMount() {
         axios.get('https://social-network.samuraijs.com/api/1.0/users')
             .then(response => {
