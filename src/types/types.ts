@@ -3,7 +3,7 @@
 import {addPostAC,changePostAC} from "../redux/profile-reducer";
 import {updateMessageAC,sendMessageAC} from "../redux/message-reducer";
 import { Store} from "redux";
-import {followAC, setUsersAC, unfollowAC} from "../redux/user-reducer";
+import {followAC, setCurrentPageAC, setUsersAC, setUserTotalCountAC, unfollowAC} from "../redux/user-reducer";
 
 
 export type postsDataPropsType ={
@@ -21,6 +21,8 @@ export type ActionsTypes =
     |ReturnType<typeof changePostAC>
     |ReturnType<typeof updateMessageAC>
     |ReturnType<typeof sendMessageAC>
+    |ReturnType<typeof setCurrentPageAC>
+    |ReturnType<typeof setUserTotalCountAC>
     |ReturnType<typeof followAC>
     |ReturnType<typeof unfollowAC>
     |ReturnType<typeof setUsersAC>

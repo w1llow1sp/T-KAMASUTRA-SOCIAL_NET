@@ -5,6 +5,8 @@ import {v1} from "uuid";
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET-USERS'
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
+const SET_TOTAL_USER_COUNT = 'SET_TOTAL_USER_COUNT'
 
 export type UserType = {
     name: string,
@@ -20,10 +22,16 @@ export type UserType = {
 
 export type InitialStateType = {
     users:Array<UserType>
+    pageSize:number
+    totalUsersCount:number
+    currentPage:number
 }
 
 let initialState: InitialStateType = {
-    users: []
+    users: [],
+    pageSize:5,
+    totalUsersCount:0,
+    currentPage:4
 }
 
 
@@ -51,7 +59,16 @@ const userReducer = (state:InitialStateType = initialState, action: ActionsTypes
             };
         case "SET-USERS":
             return {...state,
-                users:[...state.users,...action.users]
+                users:action.users}
+        case 'SET_CURRENT_PAGE':
+            return {
+                ...state,
+                currentPage:action.currentPage
+            }
+        case 'SET_TOTAL_USER_COUNT':
+            return {
+                ...state,
+                totalUsersCount:action.totalCount
             }
         default:
             return state;
@@ -77,6 +94,19 @@ export const setUsersAC = (users:Array<UserType>) => {
     return {
         type: SET_USERS,
         users
+    } as const
+}
+
+export const setCurrentPageAC = (currentPage:number) => {
+    return {
+        type:SET_CURRENT_PAGE,
+        currentPage
+    } as const
+}
+export const setUserTotalCountAC = (totalCount:number) => {
+    return {
+        type:SET_TOTAL_USER_COUNT,
+        totalCount
     } as const
 }
 
