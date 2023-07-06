@@ -3,24 +3,41 @@ import {UsersContainerProps} from "./UsersContainer";
 import styles from './User.module.css'
 import axios from 'axios';
 import USER_PIC from './images.png'
+import {Pagination} from '@mui/material';
 
 
 class UsersC extends React.Component<UsersContainerProps> {
 
+
     componentDidMount() {
+        this.fetchUsers(this.props.currentPage);
+    }
+/*    componentDidMount() {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
             .then(response => {
                 this.props.setUsers(response.data.items)
                 this.props.setUserTotalCount(response.data.totalCount)
             })
-    }
+    }*/
 
-    onPageChanged = (pageNumber:number) => {
+/*    onPageChanged = (pageNumber:number) => {
         this.props.setCurrentPage(pageNumber)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
             .then(response => {
                 this.props.setUsers(response.data.items)
             })
+    }*/
+    fetchUsers = (pageNumber: number) => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
+            .then(response => {
+                this.props.setUsers(response.data.items);
+                this.props.setUserTotalCount(response.data.totalCount);
+            })
+    }
+
+    onPageChanged = (event: ChangeEvent<unknown>, pageNumber: number) => {
+        this.props.setCurrentPage(pageNumber);
+        this.fetchUsers(pageNumber);
     }
 
 
@@ -35,7 +52,13 @@ class UsersC extends React.Component<UsersContainerProps> {
 
 
         return <div>
-            <div>
+
+            <Pagination
+                count={pagesCount}
+                color="primary"
+                onChange={this.onPageChanged}
+            />
+{/*            <div>
                 {pages.map(page => {
                     return <span className={this.props.currentPage === page
                         ? styles.selectedPage
@@ -43,7 +66,7 @@ class UsersC extends React.Component<UsersContainerProps> {
                     onClick={()=>{this.onPageChanged(page)}}>{page}
                     </span>
                 })}
-            </div>
+            </div>*/}
             {
                 this.props.users.map(user => <div key={user.id}>
                     <span>
