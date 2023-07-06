@@ -1,44 +1,43 @@
-/*
-import React, {FC} from 'react';
-import {UsersContainerProps} from "./UsersContainer";
-import styles from './User.module.css'
-import axios from 'axios';
+import React, {ChangeEvent} from 'react';
+import {Pagination} from '@mui/material';
 import USER_PIC from './images.png'
-export const Users:FC<UsersContainerProps> = ({
-    usersPage,
-    unfollow,
-    follow,
-    setUsers
-                                              }) => {
-    let getUsers = () => {
-        if (usersPage.users.length === 0) {
-            axios.get('https://social-network.samuraijs.com/api/1.0/users')
-                .then( response => {
-                    setUsers(response.data.items)
-                })
-        }
+import {UserType} from '../../redux/user-reducer';
+
+type UserAPIPropsType = {
+    totalUserCount:number
+    pageSize:number
+    users:Array<UserType>
+    onPageChanged:(event: ChangeEvent<unknown>, pageNumber: number) => void
+    follow:(userID:number) => void
+    unfollow:(userID:number) => void
+}
+
+const Users = (props:UserAPIPropsType) => {
+
+    let pagesCount = Math.ceil(props.totalUserCount / props.pageSize)
+    let pages = []
+    for (let i = 1; i <= pagesCount; i++) {
+        pages.push(i)
     }
 
-
     return (
-
         <div>
-            <button onClick={getUsers}>Get Users</button>
+            <Pagination
+                count={pagesCount}
+                color="primary"
+                onChange={props.onPageChanged}
+                size={'large'}
+            />
             {
-                usersPage.users.map( user  => <div key={user.id}>
+                props.users.map(user => <div key={user.id}>
                     <span>
                         <div>
-                            {user.photos.small === null
-                                ? <img src={USER_PIC} className={styles.userPhoto}/>
-                                : <img src={user.photos.small} className={styles.userPhoto}/>
-                            }
-
-                            <img src={user.photos.small} className={styles.userPhoto}/>
+                            <img src={user.photos.small !== null ? user.photos.small : USER_PIC} alt={'User avatar'}/>
                         </div>
                         <div>
                             {user.followed
-                                ? <button onClick={()=> follow(user.id)}>Unfollow</button>
-                                :<button onClick={()=> unfollow (user.id)}>Follow</button>
+                                ? <button onClick={() => props.unfollow(user.id)}>Unfollow</button>
+                                : <button onClick={() => props.follow(user.id)}>Follow</button>
                             }
 
                         </div>
@@ -57,7 +56,6 @@ export const Users:FC<UsersContainerProps> = ({
             }
         </div>
     );
-}
-*/
-// just a plug
-export default ()=>{};
+};
+
+export default Users;

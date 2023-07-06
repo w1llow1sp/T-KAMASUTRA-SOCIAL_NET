@@ -1,5 +1,4 @@
 import {ActionsTypes} from "../types/types";
-import {v1} from "uuid";
 
 
 const FOLLOW = 'FOLLOW'
@@ -38,6 +37,7 @@ let initialState: InitialStateType = {
 const userReducer = (state:InitialStateType = initialState, action: ActionsTypes):InitialStateType => {
     switch (action.type) {
         case "FOLLOW":
+            debugger
             return {
                 ...state,
                 users: state.users.map(user => {
