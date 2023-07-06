@@ -4,11 +4,11 @@ import {addPostAC,changePostAC} from "../redux/profile-reducer";
 import {updateMessageAC,sendMessageAC} from "../redux/message-reducer";
 import { Store} from "redux";
 import {
-    followAC,
-    setCurrentPageAC, setIsFetching,
-    setUsersAC,
-    setUserTotalCountAC,
-    unfollowAC
+    follow,
+    setCurrentPage, setIsFetching,
+    setUsers,
+    setUserTotalCount,
+    unfollow
 } from "../redux/user-reducer";
 
 
@@ -27,12 +27,12 @@ export type ActionsTypes =
     |ReturnType<typeof changePostAC>
     |ReturnType<typeof updateMessageAC>
     |ReturnType<typeof sendMessageAC>
-    |ReturnType<typeof setCurrentPageAC>
-    |ReturnType<typeof setUserTotalCountAC>
+    |ReturnType<typeof setCurrentPage>
+    |ReturnType<typeof setUserTotalCount>
     |ReturnType<typeof setIsFetching>
-    |ReturnType<typeof followAC>
-    |ReturnType<typeof unfollowAC>
-    |ReturnType<typeof setUsersAC>
+    |ReturnType<typeof follow>
+    |ReturnType<typeof unfollow>
+    |ReturnType<typeof setUsers>
 
 export type messagesDataPropsType ={
     id: string

@@ -82,14 +82,14 @@ const userReducer = (state:InitialStateType = initialState, action: ActionsTypes
     }
 };
 
-export const followAC = (userID:number) => {
+export const follow = (userID:number) => {
     return {
         type: FOLLOW,
         userID
     } as const
 }
 
-export const unfollowAC = (userID:number) => {
+export const unfollow = (userID:number) => {
     return {
         type: UNFOLLOW,
         userID
@@ -97,20 +97,20 @@ export const unfollowAC = (userID:number) => {
 }
 
 
-export const setUsersAC = (users:Array<UserType>) => {
+export const setUsers = (users:Array<UserType>) => {
     return {
         type: SET_USERS,
         users
     } as const
 }
 
-export const setCurrentPageAC = (currentPage:number) => {
+export const setCurrentPage = (currentPage:number) => {
     return {
         type:SET_CURRENT_PAGE,
         currentPage
     } as const
 }
-export const setUserTotalCountAC = (totalCount:number) => {
+export const setUserTotalCount = (totalCount:number) => {
     return {
         type:SET_TOTAL_USER_COUNT,
         totalCount
