@@ -1,16 +1,15 @@
 import React from "react";
 import  styles from './Profile.module.css'
 import ProfileInfo from "./PropfileInfo/ProfileInfo";
-import {ProfileProps} from "../../types/types";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
+import {ProfilePropsType} from './ProfileContainer';
 
 
 
-const Profile =()=> {
-
+const Profile =(props:ProfilePropsType)=> {
     return (
         <div className={styles.content}>
-            <ProfileInfo/>
+            <ProfileInfo profile={props.profile!}/>
            <MyPostsContainer/>
         </div>
     )

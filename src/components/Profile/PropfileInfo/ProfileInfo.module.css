@@ -2,4 +2,32 @@
 
 .descriptionBlock {
     padding-bottom:1rem ;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
 }
+
+.avatar { grid-area: 1 / 1 / 7 / 2; }
+.about {
+    grid-area: 2 / 2 / 3 / 5;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+.fullName {
+    grid-area: 1 / 2 / 2 / 5;
+    text-align: center;
+    padding: 0;
+    margin: 0;}
+.findJob { grid-area: 3 / 2 / 4 / 3; }
+.aboutJob { grid-area: 4 / 2 / 5 / 3; }
+.fb { grid-area: 3 / 3 / 4 / 4; }
+.gh { grid-area: 4 / 3 / 5 / 4; }
+.vk { grid-area: 5 / 3 / 6 / 4; }
+.insta { grid-area: 6 / 3 / 7 / 4; }
+.tw { grid-area: 3 / 4 / 4 / 5; }
+.mainLink { grid-area: 4 / 4 / 5 / 5; }
+.website { grid-area: 5 / 4 / 6 / 5; }
+.youtube { grid-area: 6 / 4 / 7 / 5; }

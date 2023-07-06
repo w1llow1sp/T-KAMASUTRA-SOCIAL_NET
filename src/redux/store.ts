@@ -1,3 +1,4 @@
+/*
 import {  storeType} from "../types/types";
 import  {v1} from "uuid";
 import profileReducer from "./profile-reducer";
@@ -93,4 +94,7 @@ const store:storeType = {
 }}
 
 
-export default store
+export default store*/
+
+//just a plug
+export default () => {}

@@ -2,19 +2,20 @@ import React, {ChangeEvent} from 'react';
 import {Pagination} from '@mui/material';
 import USER_PIC from '../../assets/images/images.png'
 import {UserType} from '../../redux/user-reducer';
+import {NavLink} from 'react-router-dom';
 
 
 type UserAPIPropsType = {
-    totalUserCount:number
-    pageSize:number
-    users:Array<UserType>
-    onPageChanged:(event: ChangeEvent<unknown>, pageNumber: number) => void
-    follow:(userID:number) => void
-    unfollow:(userID:number) => void
-    isFetching:boolean
+    totalUserCount: number
+    pageSize: number
+    users: Array<UserType>
+    onPageChanged: (event: ChangeEvent<unknown>, pageNumber: number) => void
+    follow: (userID: number) => void
+    unfollow: (userID: number) => void
+    isFetching: boolean
 }
 
-const Users = (props:UserAPIPropsType) => {
+const Users = (props: UserAPIPropsType) => {
 
     let pagesCount = Math.ceil(props.totalUserCount / props.pageSize)
     let pages = []
@@ -34,7 +35,9 @@ const Users = (props:UserAPIPropsType) => {
                 props.users.map(user => <div key={user.id}>
                     <span>
                         <div>
+                            <NavLink to={'/profile/' + user.id}>
                             <img src={user.photos.small !== null ? user.photos.small : USER_PIC} alt={'User avatar'}/>
+                                </NavLink>
                         </div>
                         <div>
                             {user.followed

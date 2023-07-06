@@ -1,9 +1,31 @@
-import {ActionsTypes, postsDataPropsType, ProfilePageTypes, ProfileProps} from "../types/types";
+import {ActionsTypes, postsDataPropsType, ProfileProps} from "../types/types";
 import {v1} from "uuid";
-// import {createRandomLikes} from "./store";
+
+export type ProfileType = {
+    aboutMe: string,
+    contacts: {
+        facebook: string,
+        website: null,
+        vk: string,
+        twitter: string,
+        instagram: string,
+        youtube: null,
+        github: string,
+        mainLink: null
+    },
+    lookingForAJob: boolean,
+    lookingForAJobDescription: string,
+    fullName: string,
+    userId: number,
+    photos: {
+        small: string
+        large: string
+
+    }
+}
 
 let initialState = {
-    newPostText:'',
+    newPostText:'it-kamasutra.com',
     posts:[
         {
             id: v1(),
@@ -15,10 +37,11 @@ let initialState = {
             // likesCount:createRandomLikes()
         },
     ],
+    profile: null as ProfileType | null
 }
 
 
-const profileReducer = (state = initialState, action: ActionsTypes): ProfilePageTypes => {
+const profileReducer = (state = initialState, action: ActionsTypes) => {
     switch (action.type) {
         case "ADD-POST":
             const newPost: postsDataPropsType = {
@@ -36,6 +59,11 @@ const profileReducer = (state = initialState, action: ActionsTypes): ProfilePage
                 ...state,
                 newPostText: action.newText,
             };
+        case 'SET-USER-PROFILE':
+            return  {
+                ...state,
+                profile:action.profile
+            }
         default:
             return state;
     }
@@ -52,6 +80,13 @@ export const changePostAC= (newText:string)  => {
     return{
         type:'CHANGE-NEW-TEXT',
         newText:newText
+    }  as const
+}
+
+export const setUserProfileAC= (profile:ProfileType)  => {
+    return{
+        type:'SET-USER-PROFILE',
+        profile
     }  as const
 }
 
