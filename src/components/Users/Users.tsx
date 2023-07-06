@@ -1,7 +1,8 @@
 import React, {ChangeEvent} from 'react';
 import {Pagination} from '@mui/material';
-import USER_PIC from './images.png'
+import USER_PIC from '../../assets/images/images.png'
 import {UserType} from '../../redux/user-reducer';
+
 
 type UserAPIPropsType = {
     totalUserCount:number
@@ -10,6 +11,7 @@ type UserAPIPropsType = {
     onPageChanged:(event: ChangeEvent<unknown>, pageNumber: number) => void
     follow:(userID:number) => void
     unfollow:(userID:number) => void
+    isFetching:boolean
 }
 
 const Users = (props:UserAPIPropsType) => {
