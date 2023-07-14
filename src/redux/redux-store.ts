@@ -2,8 +2,6 @@ import {combineReducers, } from "redux";
 import { createStore} from 'redux'
 import profileReducer from "./profile-reducer";
 import messageReducer from "./message-reducer";
-import {storeType} from "../types/types";
-import {SidebarReducer} from "./sidebar-reducer";
 import userReducer from "./user-reducer";
 
 export let RootReducer = combineReducers({
