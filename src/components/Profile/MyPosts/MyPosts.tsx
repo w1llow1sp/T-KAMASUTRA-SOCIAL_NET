@@ -30,7 +30,7 @@ const MyPosts :FC<MyPostContainerProps> = ({posts,
                     value={newPostText}/></div>
 
                 <div>
-                    <button onClick={OnAddPost}>Add post</button>
+                    <button className={'commonPrettyBtn'} onClick={OnAddPost}>Add post</button>
                 </div>
 
             </div>

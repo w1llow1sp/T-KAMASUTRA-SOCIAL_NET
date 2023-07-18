@@ -6,9 +6,9 @@ import {
     setUsers, setUserTotalCount, unfollow,
     UserType
 } from "../../redux/user-reducer";
-import axios from 'axios';
 import Users from './Users';
 import Preloader from '../Preloader/Preloader';
+import {usersAPI} from '../../api/api';
 
 
 //---types---//
@@ -39,11 +39,9 @@ class UsersContainer extends React.Component<UsersContainerProps> {
     }
 
     fetchUsers = (pageNumber: number) => {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`,
-            {withCredentials:true})
-            .then(response => {
-                this.props.setUsers(response.data.items);
-                this.props.setUserTotalCount(response.data.totalCount)
+        usersAPI.getUsers(pageNumber,this.props.pageSize).then(data => {
+                this.props.setUsers(data.items);
+                this.props.setUserTotalCount(data.totalCount)
                 this.props.setIsFetching(false);
             })
     }

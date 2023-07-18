@@ -46,6 +46,7 @@ const Dialogs: FC<DialogsPropsType> = ({
                     ></textarea></div>
                     <div>
                         <button
+                            className={'commonPrettyBtn'}
                             onClick={onSendMessageClick}>
                             Send
                         </button>

@@ -2,9 +2,9 @@
     --outer-space: #4C5760;
     --cadet-gray: #93A8AC;
     --pearl: #D7CEB2;
-    --dark-text-color:#2C3338;
+    --dark-text-color: #2C3338;
     /*gunmetal*/
-    --ligth-text-color:#F7F7F7;
+    --ligth-text-color: #F7F7F7;
     /*seasalt*/
     /*--khaki: #A59E8C;*/
     /*--dim-grey: #66635B;*/
@@ -32,18 +32,29 @@
 .niceNavLink {
     text-decoration: none;
     text-align: center;
-
+    color: var(--dark-text-color);
+    font-weight: bold;
 
     border: 2px solid var(--ligth-text-color);
     border-radius: 1rem;
     background: var(--ligth-text-color);
-    color:var(--dark-text-color);
-    font-weight: bold;
-
 
     margin-right: 3rem;
     padding: 1rem;
 
+}
+
+.commonPrettyBtn {
+    color: var(--ligth-text-color);
+    font-weight: bold;
+
+
+    border-radius: 7px;
+    border: none;
+    background-color:var(--outer-space);
+
+
+    padding: 0.5rem;
 }
 
 
