@@ -1,10 +1,23 @@
 .header {
     grid-area: h;
     background-color: var(--outer-space);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .header img {
     padding-left: 30px;
     margin: 15px;
     width: 100px;
+}
+.loginBlock {
+    float:right;
+}
+
+.userName {
+    margin: 3rem;
+    color: var(--ligth-text-color);
+    font-weight: bold;
 }

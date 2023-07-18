@@ -12,8 +12,6 @@ import Preloader from '../Preloader/Preloader';
 
 
 //---types---//
-
-
 type MapStateToPropsType = {
     users: Array<UserType>,
     pageSize: number

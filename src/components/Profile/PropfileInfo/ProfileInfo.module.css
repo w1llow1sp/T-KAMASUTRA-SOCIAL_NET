@@ -5,8 +5,10 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(6, 1fr);
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .avatar { grid-area: 1 / 1 / 7 / 2; }
@@ -31,3 +33,8 @@
 .mainLink { grid-area: 4 / 4 / 5 / 5; }
 .website { grid-area: 5 / 4 / 6 / 5; }
 .youtube { grid-area: 6 / 4 / 7 / 5; }
+
+
+.profileWallpaper {
+    width: 100%;
+}

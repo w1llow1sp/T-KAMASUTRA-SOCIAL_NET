@@ -29,6 +29,23 @@
     background-color: var(--pearl);
 }
 
+.niceNavLink {
+    text-decoration: none;
+    text-align: center;
+
+
+    border: 2px solid var(--ligth-text-color);
+    border-radius: 1rem;
+    background: var(--ligth-text-color);
+    color:var(--dark-text-color);
+    font-weight: bold;
+
+
+    margin-right: 3rem;
+    padding: 1rem;
+
+}
+
 
 
 
