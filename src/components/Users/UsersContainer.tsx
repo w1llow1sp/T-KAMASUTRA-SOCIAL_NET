@@ -39,7 +39,8 @@ class UsersContainer extends React.Component<UsersContainerProps> {
     }
 
     fetchUsers = (pageNumber: number) => {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`,
+            {withCredentials:true})
             .then(response => {
                 this.props.setUsers(response.data.items);
                 this.props.setUserTotalCount(response.data.totalCount)
@@ -87,5 +88,3 @@ export default connect(mapStateToProps, {
     setCurrentPage, setUserTotalCount, setIsFetching,
 })(UsersContainer)
 
-/*
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)*/

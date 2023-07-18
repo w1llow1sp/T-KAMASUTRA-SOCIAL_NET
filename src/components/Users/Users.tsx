@@ -3,6 +3,7 @@ import {Pagination} from '@mui/material';
 import USER_PIC from '../../assets/images/images.png'
 import {UserType} from '../../redux/user-reducer';
 import {NavLink} from 'react-router-dom';
+import axios from 'axios';
 
 
 type UserAPIPropsType = {
@@ -41,8 +42,30 @@ const Users = (props: UserAPIPropsType) => {
                         </div>
                         <div>
                             {user.followed
-                                ? <button onClick={() => props.unfollow(user.id)}>Unfollow</button>
-                                : <button onClick={() => props.follow(user.id)}>Follow</button>
+                                ? <button onClick={() =>
+                                {
+                                    axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
+                                        {withCredentials:true,
+                                        headers: {
+                                            'API-KEY':'a44880c0-9561-4b04-9b22-81b45ac13533'
+                                        }})
+                                        .then(response => {
+                                            if (response.data.resultCode == 0) {
+                                                props.unfollow(user.id)
+                                            }
+                                        })
+                                }}>Unfollow</button>
+                                : <button onClick={() => {
+
+                                    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,{},{withCredentials:true,                                        headers: {
+                                            'API-KEY':'a44880c0-9561-4b04-9b22-81b45ac13533'
+                                        }})
+                                        .then(response => {
+                                             if (response.data.resultCode == 0) {
+                                                 props.follow(user.id)
+                                             }
+                                        })
+                                }}>Follow</button>
                             }
 
                         </div>
