@@ -5,12 +5,12 @@ import {updateMessageAC, sendMessageAC} from "../redux/message-reducer";
 import {Store} from "redux";
 import {
     follow,
-    setCurrentPage, setIsFetching,
+    setCurrentPage, setIsFetching, setIsFollowing,
     setUsers,
     setUserTotalCount,
     unfollow
 } from "../redux/user-reducer";
-import {v1} from 'uuid';
+
 
 
 export type postsDataPropsType = {
@@ -32,6 +32,7 @@ export type ActionsTypes =
     | ReturnType<typeof setCurrentPage>
     | ReturnType<typeof setUserTotalCount>
     | ReturnType<typeof setIsFetching>
+    | ReturnType<typeof setIsFollowing>
     | ReturnType<typeof follow>
     | ReturnType<typeof unfollow>
     | ReturnType<typeof setUsers>

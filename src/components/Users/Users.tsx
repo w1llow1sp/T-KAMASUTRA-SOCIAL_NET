@@ -10,8 +10,6 @@ import USER_PIC from '../../assets/images/images.png'
 //import DAL-object
 import {usersAPI} from '../../api/api';
 
-
-
 //---Types---//
 type UserAPIPropsType = {
     totalUserCount: number
@@ -21,6 +19,8 @@ type UserAPIPropsType = {
     follow: (userID: number) => void
     unfollow: (userID: number) => void
     isFetching: boolean
+    isFollowing:(isFetching: boolean, userId: number) => void
+    followingInProgress: string[]
 }
 //---Types---//
 
@@ -50,20 +50,25 @@ const Users = (props: UserAPIPropsType) => {
                         </div>
                         <div>
                             {user.followed
-                                ? <button className={'commonPrettyBtn'} onClick={() =>
+                                ? <button disabled={props.followingInProgress.some(id => id === user.id.toString())} className={'commonPrettyBtn'} onClick={() =>
                                 {
+                                    props.isFollowing(true,user.id)
                                     usersAPI.unfollowUser(user.id).then(data => {
                                             if (data.resultCode == 0) {
                                                 props.unfollow(user.id)
                                             }
+                                            props.isFollowing(false,user.id)
                                         })
                                 }}>Unfollow</button>
-                                : <button className={'commonPrettyBtn'} onClick={() => {
+                                : <button disabled={props.followingInProgress.some(id => id === user.id.toString())} className={'commonPrettyBtn'} onClick={() =>
+                                {
+                                    props.isFollowing(true,user.id)
                                     usersAPI.followUser(user.id)
                                         .then(data => {
                                              if (data.resultCode == 0) {
                                                  props.follow(user.id)
                                              }
+                                            props.isFollowing(false,user.id)
                                         })
                                 }}>Follow</button>
                             }
