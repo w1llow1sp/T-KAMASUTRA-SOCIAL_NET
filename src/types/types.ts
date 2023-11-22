@@ -1,6 +1,6 @@
 /*------Типы для пропсов из index.tsx в App, нам надо передать 3 массива------*/
 
-import {addPostAC, changePostAC, ProfileType, setUserProfileAC} from "../redux/profile-reducer";
+import {addPostAC, changePostAC,  ProfileType, setUserProfileAC} from "../redux/profile-reducer";
 import {updateMessageAC, sendMessageAC} from "../redux/message-reducer";
 import {Store} from "redux";
 import {
@@ -36,6 +36,7 @@ export type ActionsTypes =
     | ReturnType<typeof followSusess>
     | ReturnType<typeof unfollowSucess>
     | ReturnType<typeof setUsers>
+
 
 export type messagesDataPropsType = {
     id: string

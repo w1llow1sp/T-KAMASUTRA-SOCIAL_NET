@@ -1,5 +1,7 @@
 import {ActionsTypes, postsDataPropsType, ProfileProps} from "../types/types";
 import {v1} from "uuid";
+import {Dispatch} from "redux";
+import { usersAPI} from "../api/api";
 
 export type ProfileType = {
     aboutMe: string,
@@ -25,8 +27,8 @@ export type ProfileType = {
 }
 
 let initialState = {
-    newPostText:'it-kamasutra.com',
-    posts:[
+    newPostText: 'it-kamasutra.com',
+    posts: [
         {
             id: v1(),
             message: 'Its my first post!',
@@ -52,7 +54,7 @@ const profileReducer = (state = initialState, action: ActionsTypes) => {
             return {
                 ...state,
                 posts: [newPost, ...state.posts],
-                newPostText:''
+                newPostText: ''
             };
         case "CHANGE-NEW-TEXT":
             return {
@@ -60,36 +62,41 @@ const profileReducer = (state = initialState, action: ActionsTypes) => {
                 newPostText: action.newText,
             };
         case 'SET-USER-PROFILE':
-            return  {
+            return {
                 ...state,
-                profile:action.profile
+                profile: action.profile
             }
         default:
             return state;
     }
 };
 
-export const addPostAC= (postText:string)  => {
-    return{
-        type:'ADD-POST',
-        postText:postText
+export const addPostAC = (postText: string) => {
+    return {
+        type: 'ADD-POST',
+        postText: postText
     } as const
 }
 
-export const changePostAC= (newText:string)  => {
-    return{
-        type:'CHANGE-NEW-TEXT',
-        newText:newText
-    }  as const
+export const changePostAC = (newText: string) => {
+    return {
+        type: 'CHANGE-NEW-TEXT',
+        newText: newText
+    } as const
 }
 
-export const setUserProfileAC= (profile:ProfileType)  => {
-    return{
-        type:'SET-USER-PROFILE',
+export const setUserProfileAC = (profile: ProfileType) => {
+    return {
+        type: 'SET-USER-PROFILE',
         profile
-    }  as const
+    } as const
 }
 
+export const getUserProfileTC = (userId: string) => (dispatch: Dispatch) => {
+    return  usersAPI.getUserProfile(userId).then(response => {
+        dispatch(setUserProfileAC(response.data));
+    });
+}
 
 
 export default profileReducer
