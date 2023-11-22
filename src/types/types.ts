@@ -4,11 +4,11 @@ import {addPostAC, changePostAC, ProfileType, setUserProfileAC} from "../redux/p
 import {updateMessageAC, sendMessageAC} from "../redux/message-reducer";
 import {Store} from "redux";
 import {
-    follow,
+    follow, followSusess,
     setCurrentPage, setIsFetching, setIsFollowing,
     setUsers,
     setUserTotalCount,
-    unfollow
+    unfollow, unfollowSucess
 } from "../redux/user-reducer";
 
 
@@ -33,8 +33,8 @@ export type ActionsTypes =
     | ReturnType<typeof setUserTotalCount>
     | ReturnType<typeof setIsFetching>
     | ReturnType<typeof setIsFollowing>
-    | ReturnType<typeof follow>
-    | ReturnType<typeof unfollow>
+    | ReturnType<typeof followSusess>
+    | ReturnType<typeof unfollowSucess>
     | ReturnType<typeof setUsers>
 
 export type messagesDataPropsType = {

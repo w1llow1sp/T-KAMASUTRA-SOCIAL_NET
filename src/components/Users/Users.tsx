@@ -51,26 +51,9 @@ const Users = (props: UserAPIPropsType) => {
                         <div>
                             {user.followed
                                 ? <button disabled={props.followingInProgress.some(id => id === user.id.toString())} className={'commonPrettyBtn'} onClick={() =>
-                                {
-                                    props.isFollowing(true,user.id)
-                                    usersAPI.unfollowUser(user.id).then(data => {
-                                            if (data.resultCode == 0) {
-                                                props.unfollow(user.id)
-                                            }
-                                            props.isFollowing(false,user.id)
-                                        })
-                                }}>Unfollow</button>
+                                {props.unfollow(user.id)}}>Unfollow</button>
                                 : <button disabled={props.followingInProgress.some(id => id === user.id.toString())} className={'commonPrettyBtn'} onClick={() =>
-                                {
-                                    props.isFollowing(true,user.id)
-                                    usersAPI.followUser(user.id)
-                                        .then(data => {
-                                             if (data.resultCode == 0) {
-                                                 props.follow(user.id)
-                                             }
-                                            props.isFollowing(false,user.id)
-                                        })
-                                }}>Follow</button>
+                                {props.follow(user.id)}}>Follow</button>
                             }
 
                         </div>
@@ -92,3 +75,20 @@ const Users = (props: UserAPIPropsType) => {
 };
 
 export default Users;
+/*                                    props.isFollowing(true,user.id)
+                                    usersAPI.unfollowUser(user.id).then(data => {
+                                            if (data.resultCode == 0) {
+                                                props.unfollow(user.id)
+                                            }
+                                            props.isFollowing(false,user.id)
+                                        })*/
+/*                                {
+                                    props.isFollowing(true,user.id)
+                                    usersAPI.followUser(user.id)
+                                        .then(data => {
+                                             if (data.resultCode == 0) {
+                                                 props.follow(user.id)
+                                             }
+                                            props.isFollowing(false,user.id)
+                                        })
+                                }*/
